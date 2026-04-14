@@ -14,5 +14,6 @@ Use the repository metadata as the source of truth.
 
 ## Rules
 - Do not hand-edit the root catalog if it can be regenerated.
+- For catalog layout or style changes, edit `tools/lib/harness.js` first and then rebuild `index.html`.
 - Keep the catalog static and relative-path only.
 - Let metadata drive card text instead of duplicating content elsewhere.

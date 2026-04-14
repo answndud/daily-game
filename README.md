@@ -52,6 +52,8 @@ Rebuild the root catalog:
 node tools/build-catalog.js
 ```
 
+Catalog design changes should be made in `tools/lib/harness.js`, then regenerated with `node tools/build-catalog.js`. The root `index.html` is generated output and may be overwritten.
+
 Verify one game:
 
 ```bash

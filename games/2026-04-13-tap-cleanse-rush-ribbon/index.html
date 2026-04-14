@@ -1,52 +1,52 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rush Ribbon</title>
+  <title>러시 리본</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <main class="app-shell">
     <section class="hero-panel">
-      <p class="eyebrow">April 13, 2026</p>
-      <h1>Rush Ribbon</h1>
-      <p class="tagline">Tap the glowing spill before it stitches the board shut.</p>
-      <p class="summary">Clean new outbreaks fast. Three perfect taps charge a shield that cancels the next spread.</p>
+      <p class="eyebrow">2026년 4월 13일</p>
+      <h1>러시 리본</h1>
+      <p class="tagline">빛나는 번짐을 재빨리 눌러 보드가 막히기 전에 정리하세요.</p>
+      <p class="summary">새로 생긴 번짐을 빠르게 정화하세요. 완벽한 탭 세 번이면 다음 확산을 막는 실드가 충전됩니다.</p>
     </section>
 
-    <section class="hud-panel" aria-label="Game status">
+    <section class="hud-panel" aria-label="게임 상태">
       <div class="stat">
-        <span class="stat-label">Wave</span>
+        <span class="stat-label">웨이브</span>
         <strong id="waveValue">1 / 3</strong>
       </div>
       <div class="stat">
-        <span class="stat-label">Time</span>
-        <strong id="timeValue">18.0s</strong>
+        <span class="stat-label">시간</span>
+        <strong id="timeValue">18.0초</strong>
       </div>
       <div class="stat">
-        <span class="stat-label">Cleaned</span>
+        <span class="stat-label">정화 수</span>
         <strong id="scoreValue">0</strong>
       </div>
       <div class="stat shield-stat">
-        <span class="stat-label">Shield</span>
+        <span class="stat-label">실드</span>
         <strong id="shieldValue">0 / 3</strong>
       </div>
     </section>
 
     <section class="play-panel">
       <div class="status-line">
-        <p id="messageLine">Tap start, then keep the ribbon under control.</p>
-        <button id="restartButton" class="ghost-button" type="button">Restart</button>
+        <p id="messageLine">시작을 누르면 번짐을 바로 정리하세요.</p>
+        <button id="restartButton" class="ghost-button" type="button">다시 시작</button>
       </div>
 
       <div class="board-frame">
-        <div id="board" class="board" role="grid" aria-label="Rush Ribbon playfield"></div>
+        <div id="board" class="board" role="grid" aria-label="러시 리본 플레이 보드"></div>
       </div>
 
       <div class="meter-row">
         <div class="meter-copy">
-          <span>Board Pressure</span>
+          <span>보드 압력</span>
           <strong id="pressureValue">0%</strong>
         </div>
         <div class="meter-track" aria-hidden="true">
@@ -56,21 +56,21 @@
 
       <div id="overlay" class="overlay is-visible" role="dialog" aria-live="polite">
         <div class="overlay-card">
-          <p class="overlay-kicker">One-thumb arcade</p>
-          <h2 id="overlayTitle">Start Wave One</h2>
-          <p id="overlayText">Tap infected cells before they spread. Fast taps earn shield charge. Clear three short waves to win.</p>
-          <button id="overlayButton" class="primary-button" type="button">Start</button>
+          <p class="overlay-kicker">한 손 아케이드</p>
+          <h2 id="overlayTitle">웨이브 1 시작</h2>
+          <p id="overlayText">감염된 칸이 퍼지기 전에 탭하세요. 빠른 탭일수록 실드가 차고, 짧은 웨이브 세 개를 버티면 승리합니다.</p>
+          <button id="overlayButton" class="primary-button" type="button">시작</button>
         </div>
       </div>
     </section>
 
     <section class="tips-panel">
-      <h2>How it works</h2>
+      <h2>플레이 방법</h2>
       <ul>
-        <li>Tap bright cells to cleanse them.</li>
-        <li>Tap very quickly after a cell appears to earn perfect charge.</li>
-        <li>At 3 charge, the next spread is canceled automatically.</li>
-        <li>If pressure hits the limit, the wave collapses.</li>
+        <li>밝게 빛나는 칸을 탭해 정화하세요.</li>
+        <li>칸이 생기자마자 빠르게 누르면 완벽 판정이 납니다.</li>
+        <li>실드 충전이 3이 되면 다음 확산이 자동으로 취소됩니다.</li>
+        <li>압력이 한계에 닿으면 웨이브가 붕괴합니다.</li>
       </ul>
     </section>
   </main>

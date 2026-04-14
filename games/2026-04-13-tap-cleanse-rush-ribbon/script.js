@@ -51,7 +51,7 @@
     button.className = "cell";
     button.dataset.index = String(index);
     button.setAttribute("role", "gridcell");
-    button.setAttribute("aria-label", `Board cell ${index + 1}`);
+    button.setAttribute("aria-label", `보드 칸 ${index + 1}`);
     button.addEventListener("click", handleCellTap);
     boardEl.appendChild(button);
     return {
@@ -112,9 +112,9 @@
     const infectedCount = infectedIndices().length;
     const pressure = Math.min(100, Math.round((infectedCount / FAIL_THRESHOLD) * 100));
     waveValueEl.textContent = `${state.wave} / ${TOTAL_WAVES}`;
-    timeValueEl.textContent = `${state.waveTimeLeft.toFixed(1)}s`;
+    timeValueEl.textContent = `${state.waveTimeLeft.toFixed(1)}초`;
     scoreValueEl.textContent = String(state.cleaned);
-    shieldValueEl.textContent = state.shieldReady ? "READY" : `${state.shieldCharge} / ${SHIELD_TARGET}`;
+    shieldValueEl.textContent = state.shieldReady ? "준비 완료" : `${state.shieldCharge} / ${SHIELD_TARGET}`;
     pressureValueEl.textContent = `${pressure}%`;
     pressureFillEl.style.width = `${pressure}%`;
     pressureFillEl.style.background = pressure > 68
@@ -197,9 +197,9 @@
     if (state.shieldCharge >= SHIELD_TARGET) {
       state.shieldCharge = SHIELD_TARGET;
       state.shieldReady = true;
-      setMessage("Shield ready. The next spread will fizzle out.");
+      setMessage("실드 준비 완료. 다음 확산은 바로 꺼집니다.");
     } else {
-      setMessage(`Perfect cleanse. Shield charge ${state.shieldCharge}/${SHIELD_TARGET}.`);
+      setMessage(`완벽 정화. 실드 충전 ${state.shieldCharge}/${SHIELD_TARGET}.`);
     }
   }
 
@@ -219,7 +219,7 @@
       }, 260);
     }
 
-    setMessage("Ribbon shield fired. The next spread was canceled.");
+    setMessage("리본 실드 발동. 다음 확산을 막았습니다.");
   }
 
   function trySpread(timestamp) {
@@ -280,21 +280,21 @@
 
     if (result === "lose") {
       showOverlay(
-        "Ribbon Overflow",
-        "Too many cells were infected at once. Start again and bank quick perfect cleanses for shield control.",
-        "Try Again"
+        "리본 범람",
+        "한 번에 너무 많은 칸이 감염됐습니다. 다시 시작해서 빠른 완벽 정화로 실드를 먼저 준비하세요.",
+        "다시 도전"
       );
-      setMessage("Board pressure broke the wave.");
+      setMessage("보드 압력이 한계를 넘었습니다.");
       return;
     }
 
     if (state.wave >= TOTAL_WAVES) {
       showOverlay(
-        "Board Saved",
-        `You cleared all three waves and cleaned ${state.cleaned} cells. Run it again and chase a cleaner finish.`,
-        "Play Again"
+        "보드 복구 완료",
+        `세 개의 웨이브를 모두 넘기고 ${state.cleaned}칸을 정화했습니다. 다시 플레이해서 더 깔끔한 운영에 도전해보세요.`,
+        "다시 플레이"
       );
-      setMessage("All waves cleared.");
+      setMessage("모든 웨이브를 정리했습니다.");
       return;
     }
 
@@ -305,11 +305,11 @@
     resetBoard();
     updateHud();
     showOverlay(
-      `Wave ${state.wave}`,
-      "The ribbon is moving faster now. Tap fresh outbreaks quickly to earn another shield.",
-      "Continue"
+      `웨이브 ${state.wave}`,
+      "이제 번짐 속도가 더 빨라집니다. 새로 생긴 칸을 빠르게 눌러 다시 실드를 충전하세요.",
+      "계속"
     );
-    setMessage(`Wave ${state.wave} is ready.`);
+    setMessage(`웨이브 ${state.wave} 준비 완료.`);
   }
 
   function handleCollapseCheck() {
@@ -373,7 +373,7 @@
     state.lastSpreadAt = 0;
     state.lastSeedAt = 0;
     state.rafId = window.requestAnimationFrame(tick);
-    setMessage(state.wave === 1 ? "Wave one started. Tap new outbreaks fast." : `Wave ${state.wave} started.`);
+    setMessage(state.wave === 1 ? "웨이브 1 시작. 새 번짐을 빠르게 탭하세요." : `웨이브 ${state.wave} 시작.`);
   }
 
   function resetGame() {
@@ -394,11 +394,11 @@
     resetBoard();
     updateHud();
     showOverlay(
-      "Start Wave One",
-      "Tap infected cells before they spread. Fast taps earn shield charge. Clear three short waves to win.",
-      "Start"
+      "웨이브 1 시작",
+      "감염된 칸이 퍼지기 전에 탭하세요. 빠른 탭일수록 실드가 차고, 짧은 웨이브 세 개를 버티면 승리합니다.",
+      "시작"
     );
-    setMessage("Tap start, then keep the ribbon under control.");
+    setMessage("시작을 누르면 번짐을 바로 정리하세요.");
   }
 
   function handleCellTap(event) {
@@ -409,7 +409,7 @@
     const index = Number(event.currentTarget.dataset.index);
     const cell = state.cells[index];
     if (!cell.infected) {
-      setMessage("Tap the bright infected cells, not the quiet ones.");
+      setMessage("조용한 칸 말고 밝게 감염된 칸을 눌러야 합니다.");
       return;
     }
 
@@ -418,7 +418,7 @@
     if (age <= PERFECT_WINDOW_MS) {
       chargeShield();
     } else {
-      setMessage("Cleanse landed. A faster tap would have charged the shield.");
+      setMessage("정화는 성공했습니다. 더 빨랐다면 실드가 충전됐습니다.");
     }
     updateHud();
   }

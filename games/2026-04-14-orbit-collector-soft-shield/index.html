@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>소프트 실드</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-panel">
+      <p class="eyebrow">2026년 4월 14일</p>
+      <h1>소프트 실드</h1>
+      <p class="tagline">적절한 순간에 탭해 링을 넘나들며 실드를 비축하세요.</p>
+      <p class="summary">부드러운 코어 12개를 모으세요. 완벽한 레인 전환 세 번이면 다음 충돌을 막는 실드가 충전됩니다.</p>
+    </section>
+
+    <section class="hud-panel" aria-label="게임 상태">
+      <div class="stat">
+        <span class="stat-label">코어</span>
+        <strong id="scoreValue">0 / 12</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">실드</span>
+        <strong id="shieldValue">0 / 3</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">위협</span>
+        <strong id="hazardValue">1</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">조작</span>
+        <strong>탭 / 스페이스</strong>
+      </div>
+    </section>
+
+    <section class="play-panel">
+      <div class="status-line">
+        <p id="messageLine">아레나를 탭해 궤도를 바꾸세요.</p>
+        <button id="restartButton" class="ghost-button" type="button">다시 시작</button>
+      </div>
+
+      <div class="board-frame">
+        <button id="arenaButton" class="arena-button" type="button" aria-label="플레이 영역">
+          <canvas id="arena" width="640" height="640"></canvas>
+        </button>
+      </div>
+
+      <div class="legend-row" aria-hidden="true">
+        <div class="legend-item">
+          <span class="legend-dot core-dot"></span>
+          <span>코어</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot danger-dot"></span>
+          <span>위협</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot player-dot"></span>
+          <span>플레이어</span>
+        </div>
+      </div>
+
+      <div id="overlay" class="overlay is-visible" role="dialog" aria-live="polite">
+        <div class="overlay-card">
+          <p class="overlay-kicker">한 손 궤도 게임</p>
+          <h2 id="overlayTitle">소프트 실드 시작</h2>
+          <p id="overlayText">탭해서 안쪽 링과 바깥 링을 오가세요. 코어가 있는 레인에 맞춰 12개를 모으고, 완벽 전환 세 번으로 실드 하나를 준비하세요.</p>
+          <button id="overlayButton" class="primary-button" type="button">시작</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tips-panel">
+      <h2>플레이 방법</h2>
+      <ul>
+        <li>흰색 마커는 스스로 회전합니다.</li>
+        <li>코어 직전에 탭해 해당 링으로 이동하세요.</li>
+        <li>완벽한 전환 세 번이면 실드가 충전됩니다.</li>
+        <li>실드는 위협 한 번을 막고 나면 사라집니다.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

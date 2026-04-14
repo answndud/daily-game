@@ -1,0 +1,31 @@
+# Harness Decisions
+
+## Accepted
+- Codex-only setup
+  - The repository will not carry Claude-specific settings or command abstractions.
+- Skills live under `.agents/skills/`
+  - This keeps reusable workflows in-repo and visible to future agents.
+- Scripts are the enforcement layer
+  - Repeated checks and generation steps should live in `tools/` rather than in prompts.
+- Local validation must not depend on extra global packages
+  - Repository checks should run with the stock Node runtime already available in the workspace.
+- Static verification first
+  - v1 focuses on file structure, metadata, path, and content checks.
+- Minimal planning support
+  - Today’s game ideation and scope reduction get their own skill and script.
+
+## Deferred
+- MCP integration
+  - Not needed for local-first static game generation.
+- Hook orchestration
+  - Adds complexity without clear payoff in v1.
+- Heavy browser smoke tests
+  - Deferred until static checks prove insufficient.
+- Deployment automation
+  - Kept out of the harness until the local pipeline is stable.
+
+## Design Constraints
+- Games must remain static-hostable.
+- Generation must fail safely on duplicate dates.
+- The root catalog must be reproducible from metadata alone.
+- The harness must stay understandable by a fresh Codex instance.

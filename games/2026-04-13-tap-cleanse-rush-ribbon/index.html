@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rush Ribbon</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-panel">
+      <p class="eyebrow">April 13, 2026</p>
+      <h1>Rush Ribbon</h1>
+      <p class="tagline">Tap the glowing spill before it stitches the board shut.</p>
+      <p class="summary">Clean new outbreaks fast. Three perfect taps charge a shield that cancels the next spread.</p>
+    </section>
+
+    <section class="hud-panel" aria-label="Game status">
+      <div class="stat">
+        <span class="stat-label">Wave</span>
+        <strong id="waveValue">1 / 3</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Time</span>
+        <strong id="timeValue">18.0s</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Cleaned</span>
+        <strong id="scoreValue">0</strong>
+      </div>
+      <div class="stat shield-stat">
+        <span class="stat-label">Shield</span>
+        <strong id="shieldValue">0 / 3</strong>
+      </div>
+    </section>
+
+    <section class="play-panel">
+      <div class="status-line">
+        <p id="messageLine">Tap start, then keep the ribbon under control.</p>
+        <button id="restartButton" class="ghost-button" type="button">Restart</button>
+      </div>
+
+      <div class="board-frame">
+        <div id="board" class="board" role="grid" aria-label="Rush Ribbon playfield"></div>
+      </div>
+
+      <div class="meter-row">
+        <div class="meter-copy">
+          <span>Board Pressure</span>
+          <strong id="pressureValue">0%</strong>
+        </div>
+        <div class="meter-track" aria-hidden="true">
+          <div id="pressureFill" class="meter-fill"></div>
+        </div>
+      </div>
+
+      <div id="overlay" class="overlay is-visible" role="dialog" aria-live="polite">
+        <div class="overlay-card">
+          <p class="overlay-kicker">One-thumb arcade</p>
+          <h2 id="overlayTitle">Start Wave One</h2>
+          <p id="overlayText">Tap infected cells before they spread. Fast taps earn shield charge. Clear three short waves to win.</p>
+          <button id="overlayButton" class="primary-button" type="button">Start</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tips-panel">
+      <h2>How it works</h2>
+      <ul>
+        <li>Tap bright cells to cleanse them.</li>
+        <li>Tap very quickly after a cell appears to earn perfect charge.</li>
+        <li>At 3 charge, the next spread is canceled automatically.</li>
+        <li>If pressure hits the limit, the wave collapses.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

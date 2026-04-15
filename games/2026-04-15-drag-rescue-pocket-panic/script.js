@@ -95,6 +95,28 @@
     });
   }
 
+  function clearPointerState() {
+    if (state.pointerId !== null && canvas.hasPointerCapture && canvas.hasPointerCapture(state.pointerId)) {
+      canvas.releasePointerCapture(state.pointerId);
+    }
+    state.pointerActive = false;
+    state.pointerId = null;
+  }
+
+  function primeRoundState() {
+    state.health = START_HEALTH;
+    state.timeLeft = TOTAL_TIME;
+    state.blocked = 0;
+    state.spawnCooldown = 0.4;
+    state.spawnTimer = 0.4;
+    state.difficulty = 0;
+    state.threats = [];
+    state.flashes = [];
+    state.lastTimestamp = 0;
+    resetShieldPosition();
+    clearPointerState();
+  }
+
   function resetShieldPosition() {
     state.shield.x = WIDTH / 2;
     state.shield.y = HEIGHT * 0.8;
@@ -268,6 +290,7 @@
       cancelAnimationFrame(state.rafId);
       state.rafId = 0;
     }
+    clearPointerState();
 
     if (won) {
       showOverlay(
@@ -380,19 +403,7 @@
       cancelAnimationFrame(state.rafId);
       state.rafId = 0;
     }
-
-    state.health = START_HEALTH;
-    state.timeLeft = TOTAL_TIME;
-    state.blocked = 0;
-    state.pointerActive = false;
-    state.pointerId = null;
-    state.spawnCooldown = 0.4;
-    state.spawnTimer = 0.4;
-    state.difficulty = 0;
-    state.threats = [];
-    state.flashes = [];
-    state.lastTimestamp = 0;
-    resetShieldPosition();
+    primeRoundState();
     updateHud();
     drawArena(0);
     showOverlay(
@@ -404,9 +415,11 @@
   }
 
   function startGame() {
+    primeRoundState();
     hideOverlay();
     state.running = true;
-    state.lastTimestamp = 0;
+    updateHud();
+    drawArena(0);
     setMessage("파편이 들어옵니다. 방패를 움직여 막으세요.");
     state.rafId = requestAnimationFrame(tick);
   }

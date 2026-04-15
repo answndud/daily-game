@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>포켓 패닉</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-panel">
+      <p class="eyebrow">2026년 4월 15일</p>
+      <h1>포켓 패닉</h1>
+      <p class="tagline">손가락으로 방패를 끌어 코어를 지키세요.</p>
+      <p class="summary">사방에서 날아오는 파편이 중앙 코어를 노립니다. 방패를 드래그해 막고 45초 동안 버티면 승리입니다.</p>
+    </section>
+
+    <section class="hud-panel" aria-label="게임 상태">
+      <div class="stat">
+        <span class="stat-label">코어</span>
+        <strong id="healthValue">3</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">시간</span>
+        <strong id="timeValue">45.0초</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">막은 수</span>
+        <strong id="blockValue">0</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">위협</span>
+        <strong id="threatValue">낮음</strong>
+      </div>
+    </section>
+
+    <section class="play-panel">
+      <div class="status-line">
+        <p id="messageLine">시작 후 손가락으로 방패를 끌어 위협을 막으세요.</p>
+        <button id="restartButton" class="ghost-button" type="button">다시 시작</button>
+      </div>
+
+      <div class="canvas-frame">
+        <canvas id="arenaCanvas" width="360" height="420" aria-label="포켓 패닉 플레이 영역"></canvas>
+      </div>
+
+      <div class="meter-row">
+        <div class="meter-copy">
+          <span>압박도</span>
+          <strong id="pressureValue">0%</strong>
+        </div>
+        <div class="meter-track" aria-hidden="true">
+          <div id="pressureFill" class="meter-fill"></div>
+        </div>
+      </div>
+
+      <div id="overlay" class="overlay is-visible" role="dialog" aria-live="polite">
+        <div class="overlay-card">
+          <p class="overlay-kicker">드래그 수비 게임</p>
+          <h2 id="overlayTitle">방어 시작</h2>
+          <p id="overlayText">화면 안에서 방패를 드래그해 움직이세요. 파편이 코어에 닿기 전에 막고, 45초 동안 코어 체력을 지키면 됩니다.</p>
+          <button id="overlayButton" class="primary-button" type="button">시작</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tips-panel">
+      <h2>플레이 방법</h2>
+      <ul>
+        <li>방패는 손가락을 따라 즉시 움직입니다.</li>
+        <li>파편을 방패로 튕기면 막은 수가 올라갑니다.</li>
+        <li>시간이 지날수록 파편 속도와 생성 빈도가 올라갑니다.</li>
+        <li>코어 체력이 0이 되기 전에 45초를 버티세요.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

@@ -48,6 +48,8 @@
 - Exclude combinations that create multi-scene scope, heavy UI, or unclear controls.
 - Prefer concepts that work well with taps, holds, drags, swipes, or simple keyboard fallback.
 - If a concept feels too large, simplify it before writing code.
+- Before locking a new concept, review recent `games/*/meta.json` entries and avoid repeating the same genre, primary interaction pattern, or overall play feel on adjacent days.
+- If a candidate overlaps too closely with a recent game, reject it and choose a concept from a different control family or gameplay structure.
 
 ## UX and Design Constraints
 - Design for portrait mobile layouts first.

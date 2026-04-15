@@ -424,7 +424,17 @@
     state.rafId = requestAnimationFrame(tick);
   }
 
-  overlayButtonEl.addEventListener("click", startGame);
+  function handleOverlayButtonPress(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (!overlayEl.classList.contains("is-visible")) {
+      return;
+    }
+    startGame();
+  }
+
+  overlayButtonEl.addEventListener("click", handleOverlayButtonPress);
+  overlayButtonEl.addEventListener("pointerup", handleOverlayButtonPress);
   restartButtonEl.addEventListener("click", resetGame);
   canvas.addEventListener("pointerdown", handlePointerDown);
   canvas.addEventListener("pointermove", handlePointerMove);

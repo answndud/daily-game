@@ -236,6 +236,7 @@ canvas {
   background: linear-gradient(180deg, rgba(15, 27, 38, 0.98), rgba(8, 15, 25, 0.98));
   border: 1px solid rgba(170, 233, 214, 0.16);
   box-shadow: 0 1.4rem 3rem rgba(0, 0, 0, 0.38);
+  cursor: pointer;
 }
 
 .overlay-card h2 {

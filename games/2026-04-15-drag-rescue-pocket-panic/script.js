@@ -12,6 +12,7 @@
   const pressureFillEl = document.querySelector("#pressureFill");
   const messageLineEl = document.querySelector("#messageLine");
   const overlayEl = document.querySelector("#overlay");
+  const overlayCardEl = document.querySelector("#overlayCard");
   const overlayTitleEl = document.querySelector("#overlayTitle");
   const overlayTextEl = document.querySelector("#overlayText");
   const overlayButtonEl = document.querySelector("#overlayButton");
@@ -28,6 +29,7 @@
   const MAX_THREATS_FOR_PRESSURE = 12;
 
   const state = {
+    phase: "ready",
     running: false,
     health: START_HEALTH,
     timeLeft: TOTAL_TIME,
@@ -61,6 +63,7 @@
     overlayTextEl.textContent = text;
     overlayButtonEl.textContent = buttonLabel;
     overlayEl.classList.add("is-visible");
+    overlayEl.focus({ preventScroll: true });
   }
 
   function hideOverlay() {
@@ -285,6 +288,7 @@
   }
 
   function endGame(won) {
+    state.phase = "ended";
     state.running = false;
     if (state.rafId) {
       cancelAnimationFrame(state.rafId);
@@ -398,6 +402,7 @@
   }
 
   function resetGame() {
+    state.phase = "ready";
     state.running = false;
     if (state.rafId) {
       cancelAnimationFrame(state.rafId);
@@ -415,6 +420,7 @@
   }
 
   function startGame() {
+    state.phase = "playing";
     primeRoundState();
     hideOverlay();
     state.running = true;
@@ -424,17 +430,26 @@
     state.rafId = requestAnimationFrame(tick);
   }
 
-  function handleOverlayButtonPress(event) {
+  function handleOverlayPress(event) {
     event.preventDefault();
     event.stopPropagation();
-    if (!overlayEl.classList.contains("is-visible")) {
+    if (state.phase === "playing" || !overlayEl.classList.contains("is-visible")) {
       return;
     }
     startGame();
   }
 
-  overlayButtonEl.addEventListener("click", handleOverlayButtonPress);
-  overlayButtonEl.addEventListener("pointerup", handleOverlayButtonPress);
+  function handleOverlayKeydown(event) {
+    if (event.key !== "Enter" && event.key !== " ") {
+      return;
+    }
+    handleOverlayPress(event);
+  }
+
+  overlayEl.addEventListener("pointerdown", handleOverlayPress);
+  overlayEl.addEventListener("keydown", handleOverlayKeydown);
+  overlayCardEl.addEventListener("click", handleOverlayPress);
+  overlayButtonEl.addEventListener("click", handleOverlayPress);
   restartButtonEl.addEventListener("click", resetGame);
   canvas.addEventListener("pointerdown", handlePointerDown);
   canvas.addEventListener("pointermove", handlePointerMove);

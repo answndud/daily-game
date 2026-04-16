@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>네온 드리프트</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-panel">
+      <p class="eyebrow">2026년 4월 16일</p>
+      <h1>네온 드리프트</h1>
+      <p class="tagline">차선을 갈라타며 파편 물결 세 번을 버티세요.</p>
+      <p class="summary">네 개 차선 위로 위협이 밀려옵니다. 좌우 스와이프나 버튼 입력으로 차선을 바꿔 세 개 웨이브를 넘기면 승리입니다.</p>
+    </section>
+
+    <section class="hud-panel" aria-label="게임 상태">
+      <div class="stat">
+        <span class="stat-label">웨이브</span>
+        <strong id="waveValue">1 / 3</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">시간</span>
+        <strong id="timeValue">12.0초</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">근접 콤보</span>
+        <strong id="comboValue">0</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">속도</span>
+        <strong id="speedValue">보통</strong>
+      </div>
+    </section>
+
+    <section class="play-panel">
+      <div class="status-line">
+        <p id="messageLine">시작 후 좌우로 움직여 길을 비우세요.</p>
+        <button id="restartButton" class="ghost-button" type="button">다시 시작</button>
+      </div>
+
+      <div class="canvas-frame">
+        <canvas id="roadCanvas" width="360" height="520" aria-label="네온 드리프트 도로"></canvas>
+      </div>
+
+      <div class="controls-row" aria-label="보조 조작">
+        <button id="leftButton" class="control-button" type="button">◀ 왼쪽</button>
+        <button id="rightButton" class="control-button" type="button">오른쪽 ▶</button>
+      </div>
+
+      <div class="meter-row">
+        <div class="meter-copy">
+          <span>슬로우 잔량</span>
+          <strong id="slowValue">0%</strong>
+        </div>
+        <div class="meter-track" aria-hidden="true">
+          <div id="slowFill" class="meter-fill"></div>
+        </div>
+      </div>
+
+      <div id="overlay" class="overlay is-visible" role="dialog" aria-live="polite" tabindex="0">
+        <div class="overlay-card">
+          <p class="overlay-kicker">스와이프 회피 게임</p>
+          <h2 id="overlayTitle">웨이브 시작</h2>
+          <p id="overlayText">좌우 스와이프나 버튼으로 차선을 바꾸세요. 거의 스칠 듯 피하면 콤보가 쌓이고, 3콤보마다 잠깐 슬로우가 발동합니다.</p>
+          <button id="overlayButton" class="primary-button" type="button">시작</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tips-panel">
+      <h2>플레이 방법</h2>
+      <ul>
+        <li>네 개 차선 중 한 곳에만 플레이어가 놓입니다.</li>
+        <li>위협 블록을 직접 맞지 않고 지나가면 근접 콤보가 오릅니다.</li>
+        <li>콤보 3회마다 짧은 슬로우가 발동해 다음 위협이 느려집니다.</li>
+        <li>웨이브 세 개를 전부 버티면 승리입니다.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

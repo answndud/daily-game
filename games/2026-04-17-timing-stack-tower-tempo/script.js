@@ -8,6 +8,7 @@
   const timeValueEl = document.querySelector("#timeValue");
   const comboValueEl = document.querySelector("#comboValue");
   const tempoValueEl = document.querySelector("#tempoValue");
+  const roundValueEl = document.querySelector("#roundValue");
   const slowValueEl = document.querySelector("#slowValue");
   const slowFillEl = document.querySelector("#slowFill");
   const messageLineEl = document.querySelector("#messageLine");
@@ -33,6 +34,7 @@
   const state = {
     phase: "ready",
     running: false,
+    round: 1,
     timeLeft: TOTAL_TIME,
     combo: 0,
     floorsPlaced: 0,
@@ -85,7 +87,16 @@
     floorValueEl.textContent = `${state.floorsPlaced} / ${TARGET_FLOORS}`;
     timeValueEl.textContent = `${state.timeLeft.toFixed(1)}초`;
     comboValueEl.textContent = String(state.combo);
-    tempoValueEl.textContent = state.slowTimeLeft > 0 ? "느림" : state.combo >= 2 ? "빠름" : "보통";
+    roundValueEl.textContent = String(state.round);
+    tempoValueEl.textContent = state.slowTimeLeft > 0
+      ? "느림"
+      : state.round >= 4
+        ? "광속"
+        : state.round >= 3
+          ? "매우 빠름"
+          : state.round >= 2 || state.combo >= 2
+            ? "빠름"
+            : "보통";
     const slowPercent = Math.max(0, Math.min(100, (state.slowTimeLeft / SLOW_DURATION) * 100));
     slowValueEl.textContent = `${Math.round(slowPercent)}%`;
     slowFillEl.style.width = `${slowPercent}%`;
@@ -108,7 +119,7 @@
       x: 18,
       y: stackTopY() - FLOOR_HEIGHT - 18,
       width: START_WIDTH,
-      vx: 164,
+      vx: 164 + (state.round - 1) * 18,
       color: blockColor(1),
     };
     state.lastTimestamp = 0;
@@ -122,7 +133,7 @@
       x: 18,
       y: stackTopY() - FLOOR_HEIGHT - 18,
       width,
-      vx: 170 + state.floorsPlaced * 6,
+      vx: 170 + (state.round - 1) * 22 + state.floorsPlaced * 6,
       color: blockColor(state.floorsPlaced + 1),
     };
   }
@@ -203,6 +214,23 @@
     drawFlashes(delta);
   }
 
+  function advanceRound() {
+    state.phase = "between-rounds";
+    state.running = false;
+    if (state.rafId) {
+      cancelAnimationFrame(state.rafId);
+      state.rafId = 0;
+    }
+    state.round += 1;
+    showOverlay(
+      `라운드 ${state.round} 시작`,
+      `12층을 완성했습니다. 다음 라운드에서는 블록 속도가 더 빨라집니다.`,
+      "다음 라운드"
+    );
+    setMessage(`라운드 ${state.round - 1} 클리어. 다음 라운드 준비.`);
+    updateHud();
+  }
+
   function endGame(won) {
     state.phase = "ended";
     state.running = false;
@@ -213,8 +241,8 @@
 
     if (won) {
       showOverlay(
-        "타워 완성",
-        `12층을 모두 쌓았습니다. 최종 정밀 콤보는 ${state.combo}입니다.`,
+        "리듬 완주",
+        `라운드 ${state.round}에서 12층을 완성했습니다. 최종 정밀 콤보는 ${state.combo}입니다.`,
         "다시 플레이"
       );
       setMessage("타워를 완성했습니다.");
@@ -274,7 +302,7 @@
 
     if (state.floorsPlaced >= TARGET_FLOORS) {
       state.currentBlock = null;
-      endGame(true);
+      advanceRound();
       return;
     }
 
@@ -331,6 +359,7 @@
   function resetGame() {
     state.phase = "ready";
     state.running = false;
+    state.round = 1;
     if (state.rafId) {
       cancelAnimationFrame(state.rafId);
       state.rafId = 0;
@@ -353,7 +382,7 @@
     state.running = true;
     updateHud();
     drawScene(0);
-    setMessage("블록을 맞춰 쌓기 시작하세요.");
+    setMessage(`라운드 ${state.round} 시작. 블록을 맞춰 쌓으세요.`);
     state.rafId = requestAnimationFrame(tick);
   }
 

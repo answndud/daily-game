@@ -12,7 +12,7 @@
       <p class="eyebrow">2026년 4월 17일</p>
       <h1>타워 템포</h1>
       <p class="tagline">흔들리는 블록을 맞춰 12층 타워를 완성하세요.</p>
-      <p class="summary">상단 블록이 좌우로 미끄러집니다. 탭 한 번으로 떨어뜨리고, 겹친 부분만 다음 층으로 남깁니다. 완벽 정렬은 잠깐 템포를 늦춰줍니다.</p>
+      <p class="summary">상단 블록이 좌우로 미끄러집니다. 탭 한 번으로 떨어뜨리고, 겹친 부분만 다음 층으로 남깁니다. 12층을 완성하면 다음 라운드로 이어지고 속도가 더 올라갑니다.</p>
     </section>
 
     <section class="hud-panel" aria-label="게임 상태">
@@ -31,6 +31,10 @@
       <div class="stat">
         <span class="stat-label">템포</span>
         <strong id="tempoValue">보통</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">라운드</span>
+        <strong id="roundValue">1</strong>
       </div>
     </section>
 
@@ -58,7 +62,7 @@
         <div class="overlay-card">
           <p class="overlay-kicker">탭 타이밍 빌더</p>
           <h2 id="overlayTitle">쌓기 시작</h2>
-          <p id="overlayText">화면을 탭하면 현재 블록이 바로 떨어집니다. 아래 블록과 겹친 부분만 살아남고, 완벽 정렬 2회마다 잠깐 속도가 느려집니다.</p>
+          <p id="overlayText">화면을 탭하면 현재 블록이 바로 떨어집니다. 아래 블록과 겹친 부분만 살아남고, 완벽 정렬 2회마다 잠깐 속도가 느려집니다. 12층을 쌓으면 다음 라운드가 시작됩니다.</p>
           <button id="overlayButton" class="primary-button" type="button">시작</button>
         </div>
       </div>
@@ -70,7 +74,8 @@
         <li>상단 블록이 좌우로 움직일 때 탭해 떨어뜨리세요.</li>
         <li>겹친 폭만 다음 층이 되므로 타이밍이 중요합니다.</li>
         <li>정확히 맞춘 드롭은 정밀 콤보를 올리고 템포를 잠깐 늦춥니다.</li>
-        <li>12층을 완성하기 전에 블록이 완전히 빗나가면 실패합니다.</li>
+        <li>12층을 쌓으면 다음 라운드로 넘어가고 블록 속도가 더 빨라집니다.</li>
+        <li>블록이 완전히 빗나가면 그 즉시 종료됩니다.</li>
       </ul>
     </section>
   </main>

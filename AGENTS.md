@@ -57,7 +57,6 @@
 - Keep controls obvious on first load.
 - Include a restart path and clear win/loss or score feedback.
 - Use relative paths only so the game works on static hosting and local file layouts.
-- Use `design-guidelines.md` as the default visual baseline for the root catalog and shared shell UI.
 - Apply that guide selectively: preserve readability, restrained surfaces, and scan-friendly metadata layout, while allowing game-specific color only when the mechanic truly needs it.
 
 ## Catalog Rules
@@ -76,15 +75,6 @@
 - Favor one polished mechanic over multiple weak mechanics.
 - If a game uses rounds, clearing a round should advance immediately to a harder next round, and failure should reset the run to round 1 unless the user asks for a different loop.
 - Prefer deterministic script-based checks over long natural-language review loops.
-
-## v1 Non-Goals
-- No deployment automation.
-- No audio pipeline.
-- No external asset management.
-- No framework migration, bundling, or package-heavy frontend stack.
-- No MCP integration.
-- No heavy browser automation.
-- No hook-based orchestration unless it becomes clearly necessary later.
 
 ## Agent Instructions
 - When adding or updating pipeline code, preserve the static-hosting constraint.

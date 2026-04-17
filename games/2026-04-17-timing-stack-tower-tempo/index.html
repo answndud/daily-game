@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>타워 템포</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-panel">
+      <p class="eyebrow">2026년 4월 17일</p>
+      <h1>타워 템포</h1>
+      <p class="tagline">흔들리는 블록을 맞춰 12층 타워를 완성하세요.</p>
+      <p class="summary">상단 블록이 좌우로 미끄러집니다. 탭 한 번으로 떨어뜨리고, 겹친 부분만 다음 층으로 남깁니다. 완벽 정렬은 잠깐 템포를 늦춰줍니다.</p>
+    </section>
+
+    <section class="hud-panel" aria-label="게임 상태">
+      <div class="stat">
+        <span class="stat-label">층수</span>
+        <strong id="floorValue">0 / 12</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">시간</span>
+        <strong id="timeValue">40.0초</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">정밀 콤보</span>
+        <strong id="comboValue">0</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">템포</span>
+        <strong id="tempoValue">보통</strong>
+      </div>
+    </section>
+
+    <section class="play-panel">
+      <div class="status-line">
+        <p id="messageLine">시작 후 화면을 탭해 블록을 떨어뜨리세요.</p>
+        <button id="restartButton" class="ghost-button" type="button">다시 시작</button>
+      </div>
+
+      <div class="canvas-frame">
+        <canvas id="towerCanvas" width="360" height="520" aria-label="타워 템포 플레이 영역"></canvas>
+      </div>
+
+      <div class="meter-row">
+        <div class="meter-copy">
+          <span>템포 브레이크</span>
+          <strong id="slowValue">0%</strong>
+        </div>
+        <div class="meter-track" aria-hidden="true">
+          <div id="slowFill" class="meter-fill"></div>
+        </div>
+      </div>
+
+      <div id="overlay" class="overlay is-visible" role="dialog" aria-live="polite" tabindex="0">
+        <div class="overlay-card">
+          <p class="overlay-kicker">탭 타이밍 빌더</p>
+          <h2 id="overlayTitle">쌓기 시작</h2>
+          <p id="overlayText">화면을 탭하면 현재 블록이 바로 떨어집니다. 아래 블록과 겹친 부분만 살아남고, 완벽 정렬 2회마다 잠깐 속도가 느려집니다.</p>
+          <button id="overlayButton" class="primary-button" type="button">시작</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tips-panel">
+      <h2>플레이 방법</h2>
+      <ul>
+        <li>상단 블록이 좌우로 움직일 때 탭해 떨어뜨리세요.</li>
+        <li>겹친 폭만 다음 층이 되므로 타이밍이 중요합니다.</li>
+        <li>정확히 맞춘 드롭은 정밀 콤보를 올리고 템포를 잠깐 늦춥니다.</li>
+        <li>12층을 완성하기 전에 블록이 완전히 빗나가면 실패합니다.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

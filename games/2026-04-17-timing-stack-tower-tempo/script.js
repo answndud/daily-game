@@ -247,12 +247,15 @@
       );
       setMessage("타워를 완성했습니다.");
     } else {
+      const failedRound = state.round;
+      state.round = 1;
       showOverlay(
         "리듬 붕괴",
-        `블록이 완전히 빗나갔습니다. 남은 층수는 ${TARGET_FLOORS - state.floorsPlaced}층입니다.`,
+        `${failedRound}라운드에서 블록이 완전히 빗나갔습니다. 다음 시도는 1라운드부터 다시 시작합니다.`,
         "다시 시도"
       );
       setMessage("정렬에 실패했습니다.");
+      updateHud();
     }
   }
 

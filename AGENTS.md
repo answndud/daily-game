@@ -74,6 +74,7 @@
 - The first interaction should work on touch devices.
 - Desktop keyboard or mouse fallback is allowed when helpful, but mobile remains the primary target.
 - Favor one polished mechanic over multiple weak mechanics.
+- If a game uses rounds, clearing a round should advance immediately to a harder next round, and failure should reset the run to round 1 unless the user asks for a different loop.
 - Prefer deterministic script-based checks over long natural-language review loops.
 
 ## v1 Non-Goals

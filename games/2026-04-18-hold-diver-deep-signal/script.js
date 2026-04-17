@@ -8,6 +8,7 @@
   const stabilityValueEl = document.querySelector("#stabilityValue");
   const alignmentValueEl = document.querySelector("#alignmentValue");
   const flowValueEl = document.querySelector("#flowValue");
+  const roundValueEl = document.querySelector("#roundValue");
   const calmValueEl = document.querySelector("#calmValue");
   const calmFillEl = document.querySelector("#calmFill");
   const messageLineEl = document.querySelector("#messageLine");
@@ -32,6 +33,7 @@
   const state = {
     phase: "ready",
     running: false,
+    round: 1,
     holding: false,
     playerY: HEIGHT / 2,
     playerVelocity: 0,
@@ -76,10 +78,13 @@
     if (state.calmTimeLeft > 0) {
       return "정지";
     }
-    if (state.cleared >= 10) {
+    if (state.round >= 4 || state.cleared >= 10) {
+      return "광속";
+    }
+    if (state.round >= 3 || state.cleared >= 7) {
       return "빠름";
     }
-    if (state.cleared >= 5) {
+    if (state.round >= 2 || state.cleared >= 4) {
       return "상승";
     }
     return "보통";
@@ -90,6 +95,7 @@
     stabilityValueEl.textContent = `${state.stability} / ${MAX_STABILITY}`;
     alignmentValueEl.textContent = `${state.alignment} / ${ALIGNMENT_TARGET}`;
     flowValueEl.textContent = flowLabel();
+    roundValueEl.textContent = String(state.round);
     const calmPercent = Math.max(0, Math.min(100, (state.calmTimeLeft / CALM_DURATION) * 100));
     calmValueEl.textContent = `${Math.round(calmPercent)}%`;
     calmFillEl.style.width = `${calmPercent}%`;
@@ -124,7 +130,7 @@
     }
   }
 
-  function resetGameState() {
+  function resetRoundState() {
     state.holding = false;
     state.playerY = HEIGHT / 2;
     state.playerVelocity = 0;
@@ -142,19 +148,38 @@
     updateHud();
   }
 
-  function startRun() {
-    resetGameState();
+  function startRound() {
+    resetRoundState();
     state.phase = "running";
     state.running = true;
     hideOverlay();
-    setMessage("길게 눌러 하강하고, 빈 틈 중앙에 맞춰 통과하세요.");
+    setMessage(`라운드 ${state.round} 시작. 길게 눌러 하강하고 빈 틈 중앙에 맞춰 통과하세요.`);
     if (state.rafId) {
       cancelAnimationFrame(state.rafId);
     }
     state.rafId = requestAnimationFrame(step);
   }
 
-  function endGame(won) {
+  function advanceRound() {
+    state.phase = "between-rounds";
+    state.running = false;
+    state.holding = false;
+    if (state.rafId) {
+      cancelAnimationFrame(state.rafId);
+      state.rafId = 0;
+    }
+    state.round += 1;
+    showOverlay(
+      `라운드 ${state.round} 시작`,
+      `압력 게이트 ${TARGET_GATES}개를 모두 통과했습니다. 다음 라운드에서는 흐름이 더 빨라지고 빈 틈이 더 까다로워집니다.`,
+      "다음 라운드"
+    );
+    setMessage(`라운드 ${state.round - 1} 클리어. 다음 라운드 준비.`);
+    updateHud();
+  }
+
+  function endGame() {
+    const failedRound = state.round;
     state.phase = "ended";
     state.running = false;
     state.holding = false;
@@ -162,41 +187,50 @@
       cancelAnimationFrame(state.rafId);
       state.rafId = 0;
     }
-
-    if (won) {
-      showOverlay(
-        "신호 안정화 성공",
-        `압력 게이트 ${TARGET_GATES}개를 통과했습니다. 마지막 정렬은 ${state.alignment}회였고 안정도는 ${state.stability}칸 남았습니다.`,
-        "다시 플레이"
-      );
-      setMessage("모든 게이트를 통과했습니다.");
-      return;
-    }
-
+    state.round = 1;
     showOverlay(
       "신호 붕괴",
-      "게이트 벽에 세 번 닿아 탐사선이 흔들렸습니다. 더 일찍 눌러 내려가고, 빈 틈 중앙에서 손을 떼어 보세요.",
+      `${failedRound}라운드에서 게이트 벽에 세 번 닿았습니다. 다음 시도는 1라운드부터 다시 시작합니다.`,
       "다시 시도"
     );
     setMessage("안정도가 모두 소진되었습니다.");
+    updateHud();
+  }
+
+  function resetGame() {
+    state.phase = "ready";
+    state.running = false;
+    state.round = 1;
+    if (state.rafId) {
+      cancelAnimationFrame(state.rafId);
+      state.rafId = 0;
+    }
+    resetRoundState();
+    drawScene(0.016);
+    showOverlay(
+      "잠수 준비",
+      "캔버스를 누르고 있으면 신호 구체가 내려갑니다. 손을 떼면 다시 떠오르니, 오른쪽에서 오는 게이트의 빈 틈 중앙에 맞춰 14개를 통과하세요. 라운드를 넘길수록 흐름이 더 까다로워집니다.",
+      "시작"
+    );
+    setMessage("시작 후 캔버스를 길게 누르면 하강합니다.");
   }
 
   function difficultyStep() {
-    return Math.min(TARGET_GATES - 1, state.cleared);
+    return Math.min(TARGET_GATES - 1, state.cleared + (state.round - 1) * 3);
   }
 
   function currentSpeed() {
-    const base = 122 + difficultyStep() * 6;
+    const base = 122 + difficultyStep() * 6 + (state.round - 1) * 10;
     return state.calmTimeLeft > 0 ? base * 0.62 : base;
   }
 
   function currentSpawnInterval() {
-    const base = 1.52 - difficultyStep() * 0.035;
+    const base = 1.52 - difficultyStep() * 0.035 - (state.round - 1) * 0.02;
     return state.calmTimeLeft > 0 ? Math.max(0.95, base + 0.22) : Math.max(0.88, base);
   }
 
   function currentGapHeight() {
-    return Math.max(114, 144 - difficultyStep() * 2);
+    return Math.max(104, 144 - difficultyStep() * 2 - (state.round - 1) * 4);
   }
 
   function spawnGate() {
@@ -418,7 +452,7 @@
       if (state.cleared >= TARGET_GATES) {
         updateHud();
         drawScene(0);
-        endGame(true);
+        advanceRound();
         return;
       }
     } else {
@@ -430,7 +464,7 @@
       if (state.stability <= 0) {
         updateHud();
         drawScene(0);
-        endGame(false);
+        endGame();
         return;
       }
       setMessage(`벽에 닿았습니다. 안정도 ${state.stability}/${MAX_STABILITY}`);
@@ -567,7 +601,7 @@
       setHolding(true);
     } else if (event.code === "KeyR") {
       event.preventDefault();
-      startRun();
+      resetGame();
     }
   });
 
@@ -578,9 +612,8 @@
     }
   });
 
-  overlayButtonEl.addEventListener("click", startRun);
-  restartButtonEl.addEventListener("click", startRun);
+  overlayButtonEl.addEventListener("click", startRound);
+  restartButtonEl.addEventListener("click", resetGame);
 
-  resetGameState();
-  drawScene(0.016);
+  resetGame();
 })();

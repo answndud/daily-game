@@ -12,7 +12,7 @@
       <p class="eyebrow">2026년 4월 18일</p>
       <h1>딥 시그널</h1>
       <p class="tagline">홀드로 잠수하고 손을 떼어 떠오르며 압력 게이트 14개를 통과하세요.</p>
-      <p class="summary">탐사 신호 구체가 정렬선 위를 떠다닙니다. 캔버스를 누르고 있으면 내려가고, 손을 떼면 다시 떠오릅니다. 게이트 중앙에 가깝게 통과할수록 정렬이 쌓이고 정지 필드가 켜집니다.</p>
+      <p class="summary">탐사 신호 구체가 정렬선 위를 떠다닙니다. 캔버스를 누르고 있으면 내려가고, 손을 떼면 다시 떠오릅니다. 압력 게이트 14개를 통과하면 다음 라운드로 넘어가고, 라운드가 오를수록 흐름이 더 빠르고 좁아집니다.</p>
     </section>
 
     <section class="hud-panel" aria-label="게임 상태">
@@ -31,6 +31,10 @@
       <div class="stat">
         <span class="stat-label">흐름</span>
         <strong id="flowValue">보통</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">라운드</span>
+        <strong id="roundValue">1</strong>
       </div>
     </section>
 
@@ -60,7 +64,7 @@
         <div class="overlay-card">
           <p class="overlay-kicker">홀드 잠수 회피</p>
           <h2 id="overlayTitle">잠수 준비</h2>
-          <p id="overlayText">캔버스를 누르고 있으면 신호 구체가 내려갑니다. 손을 떼면 다시 떠오르니, 오른쪽에서 오는 게이트의 빈 틈 중앙에 맞춰 14개를 통과하세요.</p>
+          <p id="overlayText">캔버스를 누르고 있으면 신호 구체가 내려갑니다. 손을 떼면 다시 떠오르니, 오른쪽에서 오는 게이트의 빈 틈 중앙에 맞춰 14개를 통과하세요. 라운드를 넘길수록 게이트 흐름이 더 까다로워집니다.</p>
           <button id="overlayButton" class="primary-button" type="button">시작</button>
         </div>
       </div>
@@ -72,7 +76,8 @@
         <li>누르고 있으면 내려가고, 손을 떼면 천천히 떠오릅니다.</li>
         <li>게이트의 빈 틈 안쪽으로 통과하면 1점이 올라갑니다.</li>
         <li>빈 틈 중앙선에 가깝게 통과하면 정렬이 쌓이고 4회째에 정지 필드가 발동합니다.</li>
-        <li>게이트 벽에 닿으면 안정도가 1칸 줄고, 3번 실패하면 종료됩니다.</li>
+        <li>게이트 14개를 통과하면 다음 라운드로 넘어가고 흐름이 더 빨라집니다.</li>
+        <li>게이트 벽에 닿으면 안정도가 1칸 줄고, 3번 실패하면 라운드 1로 돌아갑니다.</li>
       </ul>
     </section>
   </main>

@@ -181,18 +181,22 @@
     setMessage("안정도가 모두 소진되었습니다.");
   }
 
+  function difficultyStep() {
+    return Math.min(TARGET_GATES - 1, state.cleared);
+  }
+
   function currentSpeed() {
-    const base = 122 + state.spawned * 4.5 + state.cleared * 2.2;
+    const base = 122 + difficultyStep() * 6;
     return state.calmTimeLeft > 0 ? base * 0.62 : base;
   }
 
   function currentSpawnInterval() {
-    const base = 1.52 - state.spawned * 0.03;
+    const base = 1.52 - difficultyStep() * 0.035;
     return state.calmTimeLeft > 0 ? Math.max(0.95, base + 0.22) : Math.max(0.88, base);
   }
 
   function currentGapHeight() {
-    return Math.max(112, 142 - state.spawned * 2);
+    return Math.max(114, 144 - difficultyStep() * 2);
   }
 
   function spawnGate() {
@@ -209,6 +213,7 @@
       width: 56,
       gapY,
       gapHeight,
+      entered: false,
       resolved: false,
     });
 
@@ -388,15 +393,11 @@
     updateHud();
   }
 
-  function judgeGate(gate) {
+  function judgeGate(gate, safe) {
     if (gate.resolved) {
       return;
     }
     gate.resolved = true;
-
-    const gapTop = gate.gapY - gate.gapHeight / 2;
-    const gapBottom = gate.gapY + gate.gapHeight / 2;
-    const safe = state.playerY - PLAYER_RADIUS >= gapTop + 4 && state.playerY + PLAYER_RADIUS <= gapBottom - 4;
 
     if (safe) {
       state.cleared += 1;
@@ -451,16 +452,42 @@
 
   function updateGates(delta) {
     state.spawnTimer -= delta;
-    if (state.spawned < TARGET_GATES && state.spawnTimer <= 0) {
+    if (state.cleared < TARGET_GATES && state.spawnTimer <= 0) {
       spawnGate();
       state.spawnTimer = currentSpawnInterval();
     }
 
     const speed = currentSpeed();
+    const playerTop = state.playerY - PLAYER_RADIUS;
+    const playerBottom = state.playerY + PLAYER_RADIUS;
+    const playerLeft = PLAYER_X - PLAYER_RADIUS;
+    const playerRight = PLAYER_X + PLAYER_RADIUS;
+
     for (const gate of state.gates) {
       gate.x -= speed * delta;
-      if (!gate.resolved && gate.x + gate.width / 2 <= PLAYER_X) {
-        judgeGate(gate);
+
+      if (gate.resolved) {
+        continue;
+      }
+
+      const gapTop = gate.gapY - gate.gapHeight / 2;
+      const gapBottom = gate.gapY + gate.gapHeight / 2;
+      const gateLeft = gate.x;
+      const gateRight = gate.x + gate.width;
+      const overlapsPlayer = gateRight >= playerLeft && gateLeft <= playerRight;
+      const insideGap = playerTop >= gapTop + 4 && playerBottom <= gapBottom - 4;
+
+      if (overlapsPlayer) {
+        gate.entered = true;
+        if (!insideGap) {
+          judgeGate(gate, false);
+        }
+      } else if (gate.entered && gateRight < playerLeft) {
+        judgeGate(gate, true);
+      }
+
+      if (!state.running) {
+        break;
       }
     }
 

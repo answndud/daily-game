@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>슬릿 포트</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-panel">
+      <p class="eyebrow">2026년 4월 19일</p>
+      <h1>슬릿 포트</h1>
+      <p class="tagline">도크를 좌우로 끌어 맑은 캡슐만 받아 올리고 파손 화물은 흘려보내세요.</p>
+      <p class="summary">하단 선착장이 당신의 유일한 조작점입니다. 화면을 드래그해 도크를 옮기고 클린 캡슐 10개를 받아 내면 다음 라운드로 넘어갑니다. 라운드가 오를수록 도크는 더 좁아지고 화물은 더 빠르게 떨어집니다.</p>
+    </section>
+
+    <section class="hud-panel" aria-label="게임 상태">
+      <div class="stat">
+        <span class="stat-label">회수</span>
+        <strong id="catchValue">0 / 10</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">안정도</span>
+        <strong id="stabilityValue">3 / 3</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">연속 포집</span>
+        <strong id="streakValue">0</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">흐름</span>
+        <strong id="flowValue">보통</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">라운드</span>
+        <strong id="roundValue">1</strong>
+      </div>
+    </section>
+
+    <section class="play-panel">
+      <div class="status-line">
+        <p id="messageLine">시작 후 캔버스를 좌우로 드래그해 도크를 움직이세요.</p>
+        <button id="restartButton" class="ghost-button" type="button">다시 시작</button>
+      </div>
+
+      <div class="canvas-frame">
+        <canvas id="portCanvas" width="360" height="520" aria-label="슬릿 포트 플레이 영역"></canvas>
+      </div>
+
+      <p class="control-note">좌우 드래그로 도크 이동 · <kbd>←</kbd> <kbd>→</kbd>로 보조 이동 · <kbd>R</kbd>로 전체 재시작</p>
+
+      <div class="meter-row">
+        <div class="meter-copy">
+          <span>정박 안정화</span>
+          <strong id="stabilizeValue">0%</strong>
+        </div>
+        <div class="meter-track" aria-hidden="true">
+          <div id="stabilizeFill" class="meter-fill"></div>
+        </div>
+      </div>
+
+      <div id="overlay" class="overlay is-visible" role="dialog" aria-live="polite" tabindex="0">
+        <div class="overlay-card">
+          <p class="overlay-kicker">드래그 포집 라운드</p>
+          <h2 id="overlayTitle">도크 준비</h2>
+          <p id="overlayText">하단 도크를 좌우로 끌어 맑은 캡슐만 받으세요. 파손 화물을 받으면 안정도가 깎이고, 10개를 회수하면 더 빠른 다음 라운드가 열립니다.</p>
+          <button id="overlayButton" class="primary-button" type="button">시작</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tips-panel">
+      <h2>플레이 방법</h2>
+      <ul>
+        <li>하단 선착장을 좌우로 드래그해 떨어지는 화물을 받습니다.</li>
+        <li>맑은 캡슐을 받으면 회수 수치가 오르고, 파손 화물을 받으면 안정도가 1칸 줄어듭니다.</li>
+        <li>클린 캡슐을 연속 4개 포집하면 잠깐 정박 안정화가 켜져 도크가 넓어지고 흐름이 느려집니다.</li>
+        <li>라운드마다 클린 캡슐 10개를 모으면 더 어려운 다음 라운드로 넘어갑니다.</li>
+        <li>안정도를 모두 잃으면 게임은 종료되고 라운드 1부터 다시 시작합니다.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

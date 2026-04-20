@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>펄스 게이트</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="top-panel">
+      <div>
+        <p class="eyebrow">2026-04-20 Daily Game</p>
+        <h1>펄스 게이트</h1>
+        <p class="summary">중앙 코어로 들어오는 펄스가 게이트 링에 닿는 순간 탭해서 차단하세요.</p>
+      </div>
+      <button id="resetButton" class="ghost-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="hud-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>차단</span>
+        <strong><span id="blockValue">0</span>/<span id="targetValue">10</span></strong>
+      </article>
+      <article>
+        <span>안정도</span>
+        <strong id="stabilityValue">3</strong>
+      </article>
+      <article>
+        <span>연속</span>
+        <strong id="comboValue">0</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="펄스 게이트 플레이 영역">
+      <div class="canvas-wrap">
+        <canvas id="gameCanvas" aria-label="펄스 게이트 게임 캔버스"></canvas>
+        <div id="overlay" class="overlay">
+          <div class="overlay-card">
+            <p id="overlayLabel" class="eyebrow">Tap Timing</p>
+            <h2 id="overlayTitle">게이트를 준비하세요</h2>
+            <p id="overlayText">펄스가 밝은 링과 겹치는 순간 화면을 탭하세요. 빗나가거나 코어에 닿으면 안정도가 줄어듭니다.</p>
+            <button id="startButton" class="primary-button" type="button">라운드 1 시작</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="meter-row">
+        <div>
+          <span>소프트 실드</span>
+          <strong id="shieldValue">0%</strong>
+        </div>
+        <div class="meter" aria-hidden="true">
+          <span id="shieldFill"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-panel">
+      <p id="messageLine">밝은 게이트 링 안으로 펄스가 들어올 때 탭하세요.</p>
+      <ul>
+        <li>탭 또는 스페이스: 게이트 링 안의 펄스 차단</li>
+        <li>완벽한 타이밍은 실수를 한 번 막는 소프트 실드를 충전합니다</li>
+        <li>라운드 목표를 채우면 바로 더 어려운 다음 라운드로 이동합니다</li>
+        <li>실패하면 라운드 1부터 다시 시작합니다</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

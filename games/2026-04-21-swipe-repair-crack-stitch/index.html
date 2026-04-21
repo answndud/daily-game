@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>크랙 스티치</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-panel">
+      <p class="eyebrow">2026년 4월 21일</p>
+      <h1>크랙 스티치</h1>
+      <p class="tagline">균열 위를 빠르게 그어 새는 패널을 봉합하세요.</p>
+      <p class="summary">패널 곳곳에 짧은 균열이 생깁니다. 손가락으로 균열을 가로질러 스와이프하면 봉합되고, 균열이 오래 남아 터지면 안정도가 줄어듭니다. 라운드마다 12개를 봉합하면 다음 라운드로 넘어갑니다.</p>
+    </section>
+
+    <section class="hud-panel" aria-label="게임 상태">
+      <div class="stat">
+        <span class="stat-label">봉합</span>
+        <strong id="repairValue">0 / 12</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">안정도</span>
+        <strong id="stabilityValue">3 / 3</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">연속 봉합</span>
+        <strong id="streakValue">0</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">누수 압력</span>
+        <strong id="pressureValue">보통</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">라운드</span>
+        <strong id="roundValue">1</strong>
+      </div>
+    </section>
+
+    <section class="play-panel">
+      <div class="status-line">
+        <p id="messageLine">시작 후 균열 위를 짧게 스와이프하세요.</p>
+        <button id="restartButton" class="ghost-button" type="button">다시 시작</button>
+      </div>
+
+      <div class="canvas-frame">
+        <canvas id="repairCanvas" width="360" height="520" aria-label="크랙 스티치 플레이 영역"></canvas>
+      </div>
+
+      <p class="control-note">균열을 가로질러 스와이프 · <kbd>R</kbd>로 전체 재시작</p>
+
+      <div class="meter-row">
+        <div class="meter-copy">
+          <span>패널 안정화</span>
+          <strong id="stabilizeValue">0%</strong>
+        </div>
+        <div class="meter-track" aria-hidden="true">
+          <div id="stabilizeFill" class="meter-fill"></div>
+        </div>
+      </div>
+
+      <div id="overlay" class="overlay is-visible" role="dialog" aria-live="polite" tabindex="0">
+        <div class="overlay-card">
+          <p class="overlay-kicker">스와이프 봉합 라운드</p>
+          <h2 id="overlayTitle">패널 점검</h2>
+          <p id="overlayText">균열 위를 손가락으로 빠르게 그어 봉합하세요. 균열이 터지기 전에 12개를 수리하면 더 빡빡한 다음 라운드가 시작됩니다.</p>
+          <button id="overlayButton" class="primary-button" type="button">시작</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tips-panel">
+      <h2>플레이 방법</h2>
+      <ul>
+        <li>균열 선을 가로질러 스와이프하면 봉합됩니다.</li>
+        <li>균열의 남은 시간이 끝나면 안정도가 1칸 줄어듭니다.</li>
+        <li>연속 4개를 봉합하면 잠깐 패널 안정화가 켜져 균열 진행이 느려집니다.</li>
+        <li>라운드마다 12개를 봉합하면 더 어려운 다음 라운드로 넘어갑니다.</li>
+        <li>안정도를 모두 잃으면 라운드 1부터 다시 시작합니다.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

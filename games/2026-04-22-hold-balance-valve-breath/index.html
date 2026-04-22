@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>밸브 브레스</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="top-panel">
+      <div>
+        <p class="eyebrow">2026-04-22 Daily Game</p>
+        <h1>밸브 브레스</h1>
+        <p class="summary">누르고 있으면 압력이 빠지고, 손을 떼면 다시 차오릅니다. 안전 구간 안에서 코어를 안정화하세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="hud-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>안정화</span>
+        <strong><span id="progressValue">0.0</span>s</strong>
+      </article>
+      <article>
+        <span>내구도</span>
+        <strong id="stabilityValue">3</strong>
+      </article>
+      <article>
+        <span>압력</span>
+        <strong><span id="pressureValue">50</span>%</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="밸브 브레스 플레이 영역">
+      <div class="canvas-wrap">
+        <canvas id="gameCanvas" aria-label="압력 게이지 게임 캔버스"></canvas>
+        <div id="overlay" class="overlay">
+          <div class="overlay-card">
+            <p id="overlayLabel" class="eyebrow">Hold Balance</p>
+            <h2 id="overlayTitle">압력을 숨 쉬게 하세요</h2>
+            <p id="overlayText">화면을 누르고 있으면 압력이 내려가고, 손을 떼면 올라갑니다. 밝은 안전 구간 안에 게이지를 머물게 하세요.</p>
+            <button id="startButton" class="primary-button" type="button">라운드 1 시작</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="meter-row">
+        <div>
+          <span>안전 구간</span>
+          <strong id="bandValue">넓음</strong>
+        </div>
+        <div class="meter" aria-hidden="true">
+          <span id="progressFill"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-panel">
+      <p id="messageLine">누르고 있으면 배출, 떼면 충전됩니다. 압력선을 안전 구간에 유지하세요.</p>
+      <ul>
+        <li>터치/마우스 홀드 또는 스페이스 길게 누르기: 압력 배출</li>
+        <li>안전 구간 안에 있을 때만 안정화 시간이 쌓입니다</li>
+        <li>라운드 목표를 채우면 바로 더 어려운 다음 라운드로 넘어갑니다</li>
+        <li>내구도를 모두 잃으면 라운드 1부터 다시 시작합니다</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

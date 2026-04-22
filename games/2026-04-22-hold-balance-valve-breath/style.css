@@ -1,0 +1,274 @@
+:root {
+  --bg: #f2f0ea;
+  --surface: #fffdf8;
+  --surface-muted: #ebe6dc;
+  --ink: #1a1916;
+  --muted: #706b62;
+  --line: #d7d0c4;
+  --line-strong: #bcb2a4;
+  --charcoal: #25231f;
+  --amber: #c77b3e;
+  --amber-soft: #f0d2a7;
+  --green: #758f72;
+  --blue: #607f90;
+  --danger: #a05243;
+  --radius: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(217, 209, 195, 0.52)),
+    var(--bg);
+}
+
+button {
+  font: inherit;
+}
+
+.game-shell {
+  width: min(100%, 760px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.top-panel,
+.play-card,
+.info-panel,
+.hud-grid article {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.top-panel {
+  padding: 18px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 8px;
+  font-size: clamp(2rem, 9vw, 3.35rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+h2 {
+  margin-bottom: 10px;
+  font-size: 1.35rem;
+}
+
+.summary {
+  max-width: 35rem;
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.primary-button,
+.secondary-button {
+  border-radius: 999px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.primary-button {
+  color: #fffdf8;
+  background: var(--charcoal);
+  border: 1px solid var(--charcoal);
+}
+
+.secondary-button {
+  flex: 0 0 auto;
+  color: var(--charcoal);
+  background: transparent;
+  border: 1px solid var(--charcoal);
+}
+
+.hud-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.hud-grid article {
+  padding: 12px;
+}
+
+.hud-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.hud-grid strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 1.32rem;
+  line-height: 1;
+}
+
+.play-card {
+  padding: 10px;
+  overflow: hidden;
+}
+
+.canvas-wrap {
+  position: relative;
+  width: 100%;
+  min-height: min(78vh, 560px);
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 6px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(255, 253, 248, 0.08), transparent 34%),
+    linear-gradient(145deg, #25231f, #161512);
+  touch-action: none;
+}
+
+#gameCanvas {
+  display: block;
+  width: 100%;
+  height: min(78vh, 560px);
+  min-height: 420px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(20, 19, 17, 0.42);
+}
+
+.overlay[hidden] {
+  display: none;
+}
+
+.overlay-card {
+  width: min(100%, 368px);
+  padding: 18px;
+  color: var(--ink);
+  background: rgba(255, 253, 248, 0.96);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.overlay-card p:not(.eyebrow) {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.meter-row {
+  display: grid;
+  grid-template-columns: minmax(104px, auto) 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 4px 2px;
+}
+
+.meter-row span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.meter-row strong {
+  display: block;
+  margin-top: 3px;
+}
+
+.meter {
+  height: 12px;
+  overflow: hidden;
+  background: var(--surface-muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.meter span {
+  display: block;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), var(--amber));
+  transition: width 100ms linear;
+}
+
+.info-panel {
+  padding: 16px;
+}
+
+.info-panel p {
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.info-panel ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+@media (max-width: 560px) {
+  .game-shell {
+    padding: 12px;
+  }
+
+  .top-panel {
+    display: grid;
+    padding: 16px;
+  }
+
+  .secondary-button {
+    width: 100%;
+  }
+
+  .hud-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #gameCanvas {
+    height: 62vh;
+    min-height: 390px;
+  }
+
+  .canvas-wrap {
+    min-height: 390px;
+  }
+}

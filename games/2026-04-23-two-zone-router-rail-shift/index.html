@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>레일 시프트</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="top-panel">
+      <div>
+        <p class="eyebrow">2026-04-23 Daily Game</p>
+        <h1>레일 시프트</h1>
+        <p class="summary">좌우 목적지가 표시된 화물을 분기점 전에 맞는 레일로 보내세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="hud-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>배송</span>
+        <strong><span id="deliveredValue">0</span>/<span id="targetValue">12</span></strong>
+      </article>
+      <article>
+        <span>내구도</span>
+        <strong id="stabilityValue">3</strong>
+      </article>
+      <article>
+        <span>스위치</span>
+        <strong id="switchValue">좌</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="레일 시프트 플레이 영역">
+      <div class="canvas-wrap">
+        <canvas id="gameCanvas" aria-label="화물 라우팅 게임 캔버스"></canvas>
+        <div id="overlay" class="overlay">
+          <div class="overlay-card">
+            <p id="overlayLabel" class="eyebrow">Two-zone Router</p>
+            <h2 id="overlayTitle">분기 레일을 맞추세요</h2>
+            <p id="overlayText">화물 위의 L/R 표시를 보고 왼쪽 또는 오른쪽 영역을 탭하세요. 화물이 분기점을 통과하는 순간 현재 스위치 방향으로 배송됩니다.</p>
+            <button id="startButton" class="primary-button" type="button">라운드 1 시작</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-row" aria-label="조작 버튼">
+        <button id="leftButton" class="route-button active" type="button">왼쪽 레일</button>
+        <button id="rightButton" class="route-button" type="button">오른쪽 레일</button>
+      </div>
+    </section>
+
+    <section class="info-panel">
+      <p id="messageLine">왼쪽/오른쪽 화면을 탭해서 스위치를 바꾸세요.</p>
+      <ul>
+        <li>왼쪽/오른쪽 탭 또는 방향키: 분기 레일 선택</li>
+        <li>화물의 L/R 표시와 같은 목적지로 보내면 배송 성공</li>
+        <li>라운드 목표를 채우면 바로 더 빠른 다음 라운드로 넘어갑니다</li>
+        <li>오배송 3회가 누적되면 라운드 1부터 다시 시작합니다</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

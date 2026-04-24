@@ -136,6 +136,18 @@
     .empty-state {
       padding: 18px;
     }
+    .game-card {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      transition: border-color 140ms ease, transform 140ms ease, background 140ms ease;
+    }
+    .game-card:hover,
+    .game-card:focus-visible {
+      border-color: var(--line-strong);
+      background: var(--panel-muted);
+      transform: translateY(-1px);
+    }
     .game-meta-row {
       display: flex;
       flex-wrap: wrap;
@@ -163,22 +175,9 @@
       font-weight: 600;
     }
     .game-description {
-      margin: 0 0 18px;
+      margin: 0;
       color: var(--muted);
       line-height: 1.5;
-    }
-    .game-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--accent);
-      background: var(--accent);
-      color: #f8fafc;
-      text-decoration: none;
-      font-weight: 700;
     }
     .empty-state {
       background: var(--panel-muted);
@@ -198,11 +197,6 @@
     a:focus-visible {
       outline: 2px solid var(--line-strong);
       outline-offset: 2px;
-    }
-    .game-link:hover,
-    .game-link:focus-visible {
-      background: #2c3138;
-      border-color: #2c3138;
     }
     @media (max-width: 760px) {
       main {
@@ -258,7 +252,7 @@
         </div>
       </section>
       <section class="game-grid">
-<article class="game-card">
+<a class="game-card" href="./games/2026-04-24-drag-echo-chrono-drift/index.html" aria-label="크로노 드리프트 게임 열기">
   <div class="game-meta-row">
     <p class="game-date">2026-04-24</p>
     <p class="game-meta">시간 잔상 회피</p>
@@ -268,9 +262,8 @@
   <h2>크로노 드리프트</h2>
   <p class="game-tagline">내가 남긴 이동 경로가 몇 초 뒤 위험한 잔상으로 되돌아옵니다.</p>
   <p class="game-description">코어를 드래그해 데이터 노드를 회수하고 열린 게이트로 탈출하는 게임입니다. 일정 시간마다 직전 이동 경로가 적 잔상으로 재생되어 공간을 압박하며, 라운드를 클리어하면 더 빠르고 복잡한 다음 라운드로 넘어가고 실패하면 라운드 1로 돌아갑니다.</p>
-  <a class="game-link" href="./games/2026-04-24-drag-echo-chrono-drift/index.html">플레이</a>
-</article>
-<article class="game-card">
+</a>
+<a class="game-card" href="./games/2026-04-23-two-zone-router-rail-shift/index.html" aria-label="레일 시프트 게임 열기">
   <div class="game-meta-row">
     <p class="game-date">2026-04-23</p>
     <p class="game-meta">좌우 라우터</p>
@@ -280,9 +273,8 @@
   <h2>레일 시프트</h2>
   <p class="game-tagline">좌우 레일을 바꿔 화물을 정확한 목적지로 보내세요.</p>
   <p class="game-description">분기점으로 내려오는 화물의 L/R 표시를 보고 왼쪽 또는 오른쪽 레일을 선택하는 게임입니다. 목표 배송 수를 채우면 다음 라운드로 즉시 넘어가고, 오배송이 누적되면 라운드 1로 돌아갑니다.</p>
-  <a class="game-link" href="./games/2026-04-23-two-zone-router-rail-shift/index.html">플레이</a>
-</article>
-<article class="game-card">
+</a>
+<a class="game-card" href="./games/2026-04-22-hold-balance-valve-breath/index.html" aria-label="밸브 브레스 게임 열기">
   <div class="game-meta-row">
     <p class="game-date">2026-04-22</p>
     <p class="game-meta">홀드 밸런스</p>
@@ -292,9 +284,8 @@
   <h2>밸브 브레스</h2>
   <p class="game-tagline">누르고 떼는 리듬으로 압력을 안전 구간에 머물게 하세요.</p>
   <p class="game-description">압력이 자동으로 차오르고 화면을 누르면 배출되는 단일 조작 게임입니다. 안전 구간 안에 일정 시간 머물면 다음 라운드로 넘어가며, 내구도를 모두 잃으면 라운드 1로 돌아갑니다.</p>
-  <a class="game-link" href="./games/2026-04-22-hold-balance-valve-breath/index.html">플레이</a>
-</article>
-<article class="game-card">
+</a>
+<a class="game-card" href="./games/2026-04-21-swipe-repair-crack-stitch/index.html" aria-label="크랙 스티치 게임 열기">
   <div class="game-meta-row">
     <p class="game-date">2026-04-21</p>
     <p class="game-meta">스와이프 수리</p>
@@ -304,9 +295,8 @@
   <h2>크랙 스티치</h2>
   <p class="game-tagline">균열 위를 빠르게 그어 새는 패널을 봉합하세요.</p>
   <p class="game-description">패널에 생기는 짧은 균열을 스와이프로 봉합하는 게임입니다. 라운드마다 균열 12개를 수리하면 다음 단계로 넘어가고, 균열을 세 번 놓치면 라운드 1로 돌아갑니다.</p>
-  <a class="game-link" href="./games/2026-04-21-swipe-repair-crack-stitch/index.html">플레이</a>
-</article>
-<article class="game-card">
+</a>
+<a class="game-card" href="./games/2026-04-20-tap-timing-pulse-gate/index.html" aria-label="펄스 게이트 게임 열기">
   <div class="game-meta-row">
     <p class="game-date">2026-04-20</p>
     <p class="game-meta">탭 타이밍</p>
@@ -316,9 +306,8 @@
   <h2>펄스 게이트</h2>
   <p class="game-tagline">게이트 링에 닿는 펄스를 정확히 탭해 코어를 지키세요.</p>
   <p class="game-description">중앙 코어로 접근하는 펄스가 밝은 게이트 링에 겹칠 때 탭해 차단하는 게임입니다. 목표 수를 채우면 더 빠른 다음 라운드로 넘어가고, 안정도를 모두 잃으면 라운드 1로 돌아갑니다.</p>
-  <a class="game-link" href="./games/2026-04-20-tap-timing-pulse-gate/index.html">플레이</a>
-</article>
-<article class="game-card">
+</a>
+<a class="game-card" href="./games/2026-04-19-drag-catcher-slit-port/index.html" aria-label="슬릿 포트 게임 열기">
   <div class="game-meta-row">
     <p class="game-date">2026-04-19</p>
     <p class="game-meta">드래그 포집</p>
@@ -328,9 +317,8 @@
   <h2>슬릿 포트</h2>
   <p class="game-tagline">도크를 좌우로 끌어 맑은 캡슐만 받아 올리고 파손 화물은 흘려보내세요.</p>
   <p class="game-description">하단 선착장을 좌우로 움직여 클린 캡슐만 회수하는 게임입니다. 라운드마다 캡슐 10개를 모으면 다음 단계로 넘어가고, 파손 화물을 세 번 받으면 라운드 1로 돌아갑니다.</p>
-  <a class="game-link" href="./games/2026-04-19-drag-catcher-slit-port/index.html">플레이</a>
-</article>
-<article class="game-card">
+</a>
+<a class="game-card" href="./games/2026-04-18-hold-diver-deep-signal/index.html" aria-label="딥 시그널 게임 열기">
   <div class="game-meta-row">
     <p class="game-date">2026-04-18</p>
     <p class="game-meta">홀드 잠수</p>
@@ -340,9 +328,8 @@
   <h2>딥 시그널</h2>
   <p class="game-tagline">홀드로 잠수하고 손을 떼어 떠오르며 압력 게이트 14개를 통과하세요.</p>
   <p class="game-description">탐사 신호 구체를 눌러 가라앉히고 손을 떼어 부상시키며 압력 게이트의 빈 틈을 통과하는 게임입니다. 중앙 정렬 통과를 네 번 쌓으면 정지 필드가 켜져 다음 흐름이 잠깐 느려집니다.</p>
-  <a class="game-link" href="./games/2026-04-18-hold-diver-deep-signal/index.html">플레이</a>
-</article>
-<article class="game-card">
+</a>
+<a class="game-card" href="./games/2026-04-17-timing-stack-tower-tempo/index.html" aria-label="타워 템포 게임 열기">
   <div class="game-meta-row">
     <p class="game-date">2026-04-17</p>
     <p class="game-meta">타이밍 스택</p>
@@ -352,9 +339,8 @@
   <h2>타워 템포</h2>
   <p class="game-tagline">흔들리는 블록을 맞춰 12층 타워를 완성하세요.</p>
   <p class="game-description">좌우로 움직이는 블록을 탭으로 떨어뜨려 위에 쌓아 올리는 게임입니다. 12층을 완성하기 전에 완전히 빗나가면 실패합니다.</p>
-  <a class="game-link" href="./games/2026-04-17-timing-stack-tower-tempo/index.html">플레이</a>
-</article>
-<article class="game-card">
+</a>
+<a class="game-card" href="./games/2026-04-16-lane-dodger-neon-drift/index.html" aria-label="네온 드리프트 게임 열기">
   <div class="game-meta-row">
     <p class="game-date">2026-04-16</p>
     <p class="game-meta">차선 회피</p>
@@ -364,9 +350,8 @@
   <h2>네온 드리프트</h2>
   <p class="game-tagline">차선을 갈라타며 파편 물결 세 번을 버티세요.</p>
   <p class="game-description">네 개 차선 사이를 빠르게 이동하며 위협 블록 웨이브를 피하는 게임입니다. 세 번의 웨이브를 모두 버티면 승리합니다.</p>
-  <a class="game-link" href="./games/2026-04-16-lane-dodger-neon-drift/index.html">플레이</a>
-</article>
-<article class="game-card">
+</a>
+<a class="game-card" href="./games/2026-04-15-drag-rescue-pocket-panic/index.html" aria-label="포켓 패닉 게임 열기">
   <div class="game-meta-row">
     <p class="game-date">2026-04-15</p>
     <p class="game-meta">드래그 구조</p>
@@ -376,9 +361,8 @@
   <h2>포켓 패닉</h2>
   <p class="game-tagline">손가락으로 방패를 끌어 코어를 지키세요.</p>
   <p class="game-description">사방에서 들어오는 파편을 드래그 방패로 막아 중앙 코어를 지키는 게임입니다. 45초 동안 버티면 승리합니다.</p>
-  <a class="game-link" href="./games/2026-04-15-drag-rescue-pocket-panic/index.html">플레이</a>
-</article>
-<article class="game-card">
+</a>
+<a class="game-card" href="./games/2026-04-14-orbit-collector-soft-shield/index.html" aria-label="소프트 실드 게임 열기">
   <div class="game-meta-row">
     <p class="game-date">2026-04-14</p>
     <p class="game-meta">궤도 수집</p>
@@ -388,9 +372,8 @@
   <h2>소프트 실드</h2>
   <p class="game-tagline">적절한 순간에 탭해 링을 넘나들며 실드를 비축하세요.</p>
   <p class="game-description">두 개의 궤도 링을 오가며 떠다니는 코어 12개를 모으는 게임입니다. 정확한 전환 세 번으로 실드를 충전해 다음 위협 충돌을 막으세요.</p>
-  <a class="game-link" href="./games/2026-04-14-orbit-collector-soft-shield/index.html">플레이</a>
-</article>
-<article class="game-card">
+</a>
+<a class="game-card" href="./games/2026-04-13-tap-cleanse-rush-ribbon/index.html" aria-label="러시 리본 게임 열기">
   <div class="game-meta-row">
     <p class="game-date">2026-04-13</p>
     <p class="game-meta">탭 정화</p>
@@ -400,8 +383,7 @@
   <h2>러시 리본</h2>
   <p class="game-tagline">빛나는 번짐을 재빨리 눌러 보드가 막히기 전에 정리하세요.</p>
   <p class="game-description">퍼지는 감염 칸을 탭해 보드를 지켜내는 게임입니다. 짧은 웨이브 세 개를 넘기고, 새 번짐을 빠르게 정화해 실드를 모으세요.</p>
-  <a class="game-link" href="./games/2026-04-13-tap-cleanse-rush-ribbon/index.html">플레이</a>
-</article>
+</a>
       </section>
     </div>
   </main>

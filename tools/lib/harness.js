@@ -213,8 +213,9 @@ function buildCatalogHtml(entries) {
   const cards = entries.length
     ? entries
         .map(({ href, meta }) => {
+          const label = `${meta.title} 게임 열기`;
           return [
-            '<article class="game-card">',
+            `<a class="game-card" href="${escapeHtml(href)}" aria-label="${escapeHtml(label)}">`,
             '  <div class="game-meta-row">',
             `    <p class="game-date">${escapeHtml(meta.date)}</p>`,
             `    <p class="game-meta">${escapeHtml(meta.genre)}</p>`,
@@ -224,8 +225,7 @@ function buildCatalogHtml(entries) {
             `  <h2>${escapeHtml(meta.title)}</h2>`,
             `  <p class="game-tagline">${escapeHtml(meta.tagline)}</p>`,
             `  <p class="game-description">${escapeHtml(meta.description)}</p>`,
-            `  <a class="game-link" href="${escapeHtml(href)}">플레이</a>`,
-            "</article>",
+            "</a>",
           ].join("\n");
         })
         .join("\n")
@@ -378,6 +378,18 @@ function buildCatalogHtml(entries) {
     .empty-state {
       padding: 18px;
     }
+    .game-card {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      transition: border-color 140ms ease, transform 140ms ease, background 140ms ease;
+    }
+    .game-card:hover,
+    .game-card:focus-visible {
+      border-color: var(--line-strong);
+      background: var(--panel-muted);
+      transform: translateY(-1px);
+    }
     .game-meta-row {
       display: flex;
       flex-wrap: wrap;
@@ -405,22 +417,9 @@ function buildCatalogHtml(entries) {
       font-weight: 600;
     }
     .game-description {
-      margin: 0 0 18px;
+      margin: 0;
       color: var(--muted);
       line-height: 1.5;
-    }
-    .game-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--accent);
-      background: var(--accent);
-      color: #f8fafc;
-      text-decoration: none;
-      font-weight: 700;
     }
     .empty-state {
       background: var(--panel-muted);
@@ -440,11 +439,6 @@ function buildCatalogHtml(entries) {
     a:focus-visible {
       outline: 2px solid var(--line-strong);
       outline-offset: 2px;
-    }
-    .game-link:hover,
-    .game-link:focus-visible {
-      background: #2c3138;
-      border-color: #2c3138;
     }
     @media (max-width: 760px) {
       main {

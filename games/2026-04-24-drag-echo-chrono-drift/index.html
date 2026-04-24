@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>크로노 드리프트</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="top-panel">
+      <div>
+        <p class="eyebrow">2026-04-24 Daily Game</p>
+        <h1>크로노 드리프트</h1>
+        <p class="summary">손가락으로 코어를 끌어 데이터 노드를 회수하세요. 몇 초 뒤, 방금 지나간 경로가 위험한 시간 잔상으로 되돌아옵니다.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="hud-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>노드</span>
+        <strong><span id="coreValue">0</span>/<span id="targetValue">4</span></strong>
+      </article>
+      <article>
+        <span>무결성</span>
+        <strong id="integrityValue">3</strong>
+      </article>
+      <article>
+        <span>잔상</span>
+        <strong id="echoValue">0.0s</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="크로노 드리프트 플레이 영역">
+      <div class="canvas-wrap">
+        <canvas id="gameCanvas" aria-label="시간 잔상 회피 게임 캔버스"></canvas>
+        <div id="overlay" class="overlay">
+          <div class="overlay-card">
+            <p id="overlayLabel" class="eyebrow">Time Echo Drift</p>
+            <h2 id="overlayTitle">경로가 적이 됩니다</h2>
+            <p id="overlayText">드래그로 코어를 조종해 노드를 모두 회수하고 열린 게이트로 탈출하세요. 일정 시간이 지나면 이전 경로가 잔상으로 재생됩니다.</p>
+            <button id="startButton" class="primary-button" type="button">라운드 1 시작</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="status-row">
+        <div>
+          <span>위상 방전</span>
+          <strong id="phaseValue">0%</strong>
+        </div>
+        <div class="meter" aria-hidden="true">
+          <span id="phaseFill"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-panel">
+      <p id="messageLine">화면을 드래그해 코어를 이동하세요. 노드를 모두 모은 뒤 게이트에 들어가면 다음 라운드입니다.</p>
+      <ul>
+        <li>터치/마우스 드래그: 코어 유도</li>
+        <li>시간 잔상과 감시자에 닿으면 무결성이 감소합니다</li>
+        <li>위상 방전이 차면 주변 위험을 잠시 밀어냅니다</li>
+        <li>클리어 시 더 어려운 다음 라운드, 실패 시 라운드 1로 복귀합니다</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

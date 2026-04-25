@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>프리즘 락</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="top-panel">
+      <div>
+        <p class="eyebrow">2026-04-25 Daily Game</p>
+        <h1>프리즘 락</h1>
+        <p class="summary">빈 칸 옆의 프리즘을 밀어 목표 패턴과 같은 순서로 맞추세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="hud-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>이동</span>
+        <strong><span id="movesValue">0</span>/<span id="limitValue">24</span></strong>
+      </article>
+      <article>
+        <span>정렬</span>
+        <strong><span id="matchValue">0</span>/15</strong>
+      </article>
+      <article>
+        <span>연쇄</span>
+        <strong id="chainValue">0</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="프리즘 락 플레이 영역">
+      <div class="board-panel">
+        <div class="target-panel">
+          <p class="panel-label">목표 패턴</p>
+          <div id="targetGrid" class="mini-grid" aria-hidden="true"></div>
+        </div>
+        <div id="board" class="board" role="grid" aria-label="프리즘 슬라이드 퍼즐"></div>
+      </div>
+
+      <div id="overlay" class="overlay">
+        <div class="overlay-card">
+          <p id="overlayLabel" class="eyebrow">Slide Align</p>
+          <h2 id="overlayTitle">빈 칸으로 밀어 넣으세요</h2>
+          <p id="overlayText">프리즘 타일을 탭하면 빈 칸과 같은 행 또는 열에 있는 타일들이 한 번에 밀립니다. 목표 패턴과 일치하면 다음 라운드로 넘어갑니다.</p>
+          <button id="startButton" class="primary-button" type="button">라운드 1 시작</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-panel">
+      <p id="messageLine">빈 칸과 같은 행/열의 타일을 탭하거나 스와이프해서 프리즘을 이동하세요.</p>
+      <ul>
+        <li>탭: 빈 칸 방향으로 같은 행/열 타일 밀기</li>
+        <li>스와이프 또는 방향키: 빈 칸 주변 타일을 한 칸 이동</li>
+        <li>목표 패턴과 일치하면 즉시 더 어려운 다음 라운드로 이동</li>
+        <li>이동 제한을 넘기면 라운드 1부터 다시 시작</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

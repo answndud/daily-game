@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>미러 싱크</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="top-panel">
+      <div>
+        <p class="eyebrow">2026-04-26 Daily Game</p>
+        <h1>미러 싱크</h1>
+        <p class="summary">한 번의 방향 입력으로 두 코어가 거울처럼 움직입니다. 동시에 각자의 게이트에 맞춰 넣으세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="hud-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>이동</span>
+        <strong><span id="moveValue">0</span>/<span id="limitValue">18</span></strong>
+      </article>
+      <article>
+        <span>안정도</span>
+        <strong id="stabilityValue">3</strong>
+      </article>
+      <article>
+        <span>동기율</span>
+        <strong id="syncValue">0%</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="미러 싱크 플레이 영역">
+      <canvas id="gameCanvas" aria-label="쌍둥이 코어 미러 퍼즐 캔버스"></canvas>
+      <div id="overlay" class="overlay">
+        <div class="overlay-card">
+          <p id="overlayLabel" class="eyebrow">Mirror Movement</p>
+          <h2 id="overlayTitle">두 코어를 동시에 맞추세요</h2>
+          <p id="overlayText">스와이프나 방향키로 이동합니다. 왼쪽 코어는 입력 방향으로, 오른쪽 코어는 좌우가 반전된 방향으로 움직입니다.</p>
+          <button id="startButton" class="primary-button" type="button">라운드 1 시작</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="control-panel" aria-label="방향 조작">
+      <button data-dir="up" type="button">상</button>
+      <button data-dir="left" type="button">좌</button>
+      <button data-dir="right" type="button">우</button>
+      <button data-dir="down" type="button">하</button>
+    </section>
+
+    <section class="info-panel">
+      <p id="messageLine">두 코어를 각자 같은 색 게이트 위에 동시에 올려놓으세요.</p>
+      <ul>
+        <li>스와이프, 방향키, 버튼: 한 칸 이동</li>
+        <li>오른쪽 코어는 좌우 입력이 반대로 적용됩니다</li>
+        <li>두 코어가 동시에 게이트에 닿으면 더 어려운 다음 라운드로 이동</li>
+        <li>장벽 충돌이나 이동 제한 초과로 실패하면 라운드 1로 돌아갑니다</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

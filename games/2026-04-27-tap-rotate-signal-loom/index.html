@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>시그널 룸</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="top-panel">
+      <div>
+        <p class="eyebrow">2026-04-27 Daily Game</p>
+        <h1>시그널 룸</h1>
+        <p class="summary">거울 노드를 탭해 회전시키고, 신호 빔을 수신기까지 이어 주세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="hud-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>회전</span>
+        <strong><span id="turnValue">0</span>/<span id="limitValue">10</span></strong>
+      </article>
+      <article>
+        <span>연결</span>
+        <strong id="linkValue">0%</strong>
+      </article>
+      <article>
+        <span>거울</span>
+        <strong id="mirrorValue">0</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="시그널 룸 플레이 영역">
+      <canvas id="gameCanvas" aria-label="거울 회전 신호 퍼즐 캔버스"></canvas>
+      <div id="overlay" class="overlay">
+        <div class="overlay-card">
+          <p id="overlayLabel" class="eyebrow">Tap Rotate</p>
+          <h2 id="overlayTitle">빛의 길을 짜세요</h2>
+          <p id="overlayText">거울 타일을 탭하면 방향이 바뀝니다. 빔이 수신기에 닿으면 다음 라운드로 넘어갑니다.</p>
+          <button id="startButton" class="primary-button" type="button">라운드 1 시작</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-panel">
+      <p id="messageLine">거울을 탭해 빔을 꺾고, 노란 수신기로 신호를 보내세요.</p>
+      <ul>
+        <li>거울 탭: / 와 \ 방향 전환</li>
+        <li>빔이 보드 밖으로 나가거나 차단기에 닿으면 아직 연결되지 않은 상태입니다</li>
+        <li>수신기에 닿으면 즉시 더 어려운 다음 라운드로 이동합니다</li>
+        <li>회전 제한을 넘기면 라운드 1부터 다시 시작합니다</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

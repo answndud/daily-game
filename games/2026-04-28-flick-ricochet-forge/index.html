@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>리코셰 포지</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="top-panel">
+      <div>
+        <p class="eyebrow">2026-04-28 Daily Game</p>
+        <h1>리코셰 포지</h1>
+        <p class="summary">퍽을 당겨 조준하고 놓으세요. 벽 반사를 이용해 코어를 회수한 뒤 출구로 들어갑니다.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="hud-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>발사</span>
+        <strong><span id="shotValue">0</span>/<span id="limitValue">5</span></strong>
+      </article>
+      <article>
+        <span>코어</span>
+        <strong><span id="coreValue">0</span>/<span id="targetValue">3</span></strong>
+      </article>
+      <article>
+        <span>속도</span>
+        <strong id="speedValue">0</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="리코셰 포지 플레이 영역">
+      <canvas id="gameCanvas" aria-label="플릭 리코셰 게임 캔버스"></canvas>
+      <div id="overlay" class="overlay">
+        <div class="overlay-card">
+          <p id="overlayLabel" class="eyebrow">Flick Ricochet</p>
+          <h2 id="overlayTitle">반사각을 읽으세요</h2>
+          <p id="overlayText">퍽을 뒤로 당긴 뒤 놓으면 반대 방향으로 발사됩니다. 모든 코어를 모은 뒤 열린 출구에 닿으면 다음 라운드입니다.</p>
+          <button id="startButton" class="primary-button" type="button">라운드 1 시작</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-panel">
+      <p id="messageLine">퍽을 끌어 조준하고 놓아 발사하세요.</p>
+      <ul>
+        <li>드래그 후 놓기: 방향과 힘 조절</li>
+        <li>벽 반사로 코어를 모두 회수하면 출구가 열립니다</li>
+        <li>발사 횟수 안에 출구로 들어가면 즉시 더 어려운 다음 라운드</li>
+        <li>위험 핀에 닿거나 발사를 모두 쓰면 라운드 1로 돌아갑니다</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

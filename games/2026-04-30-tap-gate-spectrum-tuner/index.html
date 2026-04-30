@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스펙트럼 튜너</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="top-panel">
+      <div>
+        <p class="eyebrow">2026-04-30 Daily Game</p>
+        <h1>스펙트럼 튜너</h1>
+        <p class="summary">내려오는 캡슐 색을 보고 하단 게이트를 탭해 같은 색으로 맞추세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="hud-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>처리</span>
+        <strong><span id="scoreValue">0</span>/<span id="targetValue">12</span></strong>
+      </article>
+      <article>
+        <span>안정도</span>
+        <strong id="stabilityValue">3</strong>
+      </article>
+      <article>
+        <span>연쇄</span>
+        <strong id="comboValue">0</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="스펙트럼 튜너 플레이 영역">
+      <canvas id="gameCanvas" aria-label="탭 게이트 색상 분류 게임 캔버스"></canvas>
+      <div id="overlay" class="overlay">
+        <div class="overlay-card">
+          <p id="overlayLabel" class="eyebrow">Tap Gate Tuning</p>
+          <h2 id="overlayTitle">게이트 색을 맞추세요</h2>
+          <p id="overlayText">하단 게이트를 탭하면 색이 순환합니다. 캡슐이 게이트에 닿는 순간 색이 같아야 처리됩니다.</p>
+          <button id="startButton" class="primary-button" type="button">라운드 1 시작</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-panel">
+      <p id="messageLine">하단 게이트를 탭해서 내려오는 캡슐과 같은 색으로 맞추세요.</p>
+      <ul>
+        <li>게이트 탭 또는 숫자 1~4: 해당 게이트 색상 순환</li>
+        <li>색이 맞으면 처리 성공, 틀리면 안정도 감소</li>
+        <li>목표 처리량을 채우면 즉시 더 빠른 다음 라운드로 이동</li>
+        <li>안정도를 모두 잃으면 라운드 1부터 다시 시작합니다</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

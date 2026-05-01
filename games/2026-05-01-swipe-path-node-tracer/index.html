@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>노드 트레이서</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">2026-05-01 Daily Game</p>
+        <h1>노드 트레이서</h1>
+        <p class="summary">빛나는 노드를 시작점부터 순서대로 스와이프해 회로를 안정화하세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">처음부터</button>
+    </header>
+
+    <section class="status-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>완성</span>
+        <strong><span id="scoreValue">0</span>/<span id="targetValue">4</span></strong>
+      </article>
+      <article>
+        <span>실패</span>
+        <strong><span id="faultValue">0</span>/3</strong>
+      </article>
+      <article>
+        <span>시간</span>
+        <strong id="timeValue">10.0</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="노드 트레이서 플레이 영역">
+      <canvas id="gameCanvas" width="720" height="900"></canvas>
+      <div id="overlay" class="overlay">
+        <p id="overlayLabel" class="overlay-label">시작</p>
+        <h2 id="overlayTitle">경로를 이어 주세요</h2>
+        <p id="overlayText">1번 노드에서 시작해 숫자 순서대로 손가락을 끌면 회로가 완성됩니다.</p>
+        <button id="startButton" type="button">시작</button>
+      </div>
+    </section>
+
+    <p id="messageLine" class="message">1번 노드에서 시작해 이어진 순서대로 지나가세요.</p>
+  </main>
+</body>
+</html>

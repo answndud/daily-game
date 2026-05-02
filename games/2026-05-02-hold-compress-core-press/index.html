@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>코어 프레스</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">2026-05-02 Daily Game</p>
+        <h1>코어 프레스</h1>
+        <p class="summary">화면을 눌러 압축 링을 줄이고, 목표 밴드에 닿는 순간 손을 떼어 코어를 보정하세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">처음부터</button>
+    </header>
+
+    <section class="status-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>보정</span>
+        <strong><span id="scoreValue">0</span>/<span id="targetValue">7</span></strong>
+      </article>
+      <article>
+        <span>균열</span>
+        <strong><span id="faultValue">0</span>/3</strong>
+      </article>
+      <article>
+        <span>연속</span>
+        <strong id="comboValue">0</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="코어 프레스 플레이 영역">
+      <canvas id="gameCanvas" width="720" height="900"></canvas>
+      <div id="overlay" class="overlay">
+        <p id="overlayLabel" class="overlay-label">시작</p>
+        <h2 id="overlayTitle">눌렀다가 정확히 떼세요</h2>
+        <p id="overlayText">압축 링이 목표 밴드 안에 들어왔을 때 손을 떼면 보정됩니다.</p>
+        <button id="startButton" type="button">시작</button>
+      </div>
+    </section>
+
+    <p id="messageLine" class="message">화면을 누르고 있다가 밝은 목표 밴드에서 손을 떼세요.</p>
+  </main>
+</body>
+</html>

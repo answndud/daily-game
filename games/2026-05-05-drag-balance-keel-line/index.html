@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>킬 라인</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">2026-05-05 Daily Game</p>
+        <h1>킬 라인</h1>
+        <p class="summary">하단 핸들을 좌우로 끌어 기울어지는 선체를 안정선 안에 붙잡으세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">처음부터</button>
+    </header>
+
+    <section class="status-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>안정</span>
+        <strong><span id="scoreValue">0.0</span>/<span id="targetValue">8.0</span></strong>
+      </article>
+      <article>
+        <span>균열</span>
+        <strong><span id="faultValue">0</span>/3</strong>
+      </article>
+      <article>
+        <span>바람</span>
+        <strong id="windValue">0</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="킬 라인 플레이 영역">
+      <canvas id="gameCanvas" width="720" height="900"></canvas>
+      <div id="overlay" class="overlay">
+        <p id="overlayLabel" class="overlay-label">시작</p>
+        <h2 id="overlayTitle">핸들을 끌어 균형을 잡으세요</h2>
+        <p id="overlayText">하단 핸들을 좌우로 드래그해 선체를 중앙 안정선 안에 머물게 하세요.</p>
+        <button id="startButton" type="button">시작</button>
+      </div>
+    </section>
+
+    <p id="messageLine" class="message">하단 핸들을 좌우로 드래그해 기울기를 보정하세요.</p>
+  </main>
+</body>
+</html>

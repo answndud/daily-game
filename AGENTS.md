@@ -50,6 +50,10 @@
 - If a concept feels too large, simplify it before writing code.
 - Before locking a new concept, review recent `games/*/meta.json` entries and avoid repeating the same genre, primary interaction pattern, or overall play feel on adjacent days.
 - If a candidate overlaps too closely with a recent game, reject it and choose a concept from a different control family or gameplay structure.
+- Before generating a new daily game, consult `docs/24-game-retrospective.md` and, when useful, `node tools/review-games.js`.
+- Reject candidates that repeat a genre or control family used in the recent 10-game window unless the user explicitly asks for that style.
+- Prefer currently underused directions from the retrospective: rhythm input, compact strategy/choice, spatial reasoning, priority juggling, or resource management.
+- Treat recurring weak patterns from the retrospective, such as timing stack, plain left/right sorting, drag balance, and hold-band maintenance, as temporary avoid-by-default patterns.
 
 ## UX and Design Constraints
 - Design for portrait mobile layouts first.

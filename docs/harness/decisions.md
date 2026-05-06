@@ -3,8 +3,8 @@
 ## Accepted
 - Codex-only setup
   - The repository will not carry Claude-specific settings or command abstractions.
-- Skills live under `.agents/skills/`
-  - This keeps reusable workflows in-repo and visible to future agents.
+- A single project-local skill lives under `.agents/skills/game-creator/`
+  - This keeps the end-to-end daily workflow in-repo without exposing separate phase skills that users do not call directly.
 - Scripts are the enforcement layer
   - Repeated checks and generation steps should live in `tools/` rather than in prompts.
 - Local validation must not depend on extra global packages
@@ -12,7 +12,7 @@
 - Static verification first
   - v1 focuses on file structure, metadata, path, and content checks.
 - Minimal planning support
-  - Today’s game ideation and scope reduction get their own skill and script.
+  - Today’s game ideation starts from `tools/plan-game.js`, but final concept selection is governed by `game-creator`, `AGENTS.md`, and the retrospective.
 
 ## Deferred
 - MCP integration

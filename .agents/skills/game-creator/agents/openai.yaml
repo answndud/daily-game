@@ -1,0 +1,4 @@
+interface:
+  display_name: "Game Creator"
+  short_description: "Daily game creation and publishing workflow"
+  default_prompt: "Use $game-creator for 2026년 5월 7일."

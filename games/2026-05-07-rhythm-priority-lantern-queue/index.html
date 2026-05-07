@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>랜턴 큐</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">2026-05-07 Daily Game</p>
+        <h1>랜턴 큐</h1>
+        <p class="summary">박자선에 닿는 순간 가장 긴급한 랜턴 번호를 눌러 행렬을 안정화하세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">처음부터</button>
+    </header>
+
+    <section class="status-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>처리</span>
+        <strong><span id="scoreValue">0</span>/<span id="targetValue">9</span></strong>
+      </article>
+      <article>
+        <span>오판</span>
+        <strong><span id="faultValue">0</span>/3</strong>
+      </article>
+      <article>
+        <span>박자</span>
+        <strong id="tempoValue">72</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="랜턴 큐 플레이 영역">
+      <canvas id="gameCanvas" width="720" height="900"></canvas>
+      <div class="choice-row" aria-label="랜턴 선택 버튼">
+        <button class="choice-button" type="button" data-lane="0">1</button>
+        <button class="choice-button" type="button" data-lane="1">2</button>
+        <button class="choice-button" type="button" data-lane="2">3</button>
+      </div>
+      <div id="overlay" class="overlay">
+        <p id="overlayLabel" class="overlay-label">시작</p>
+        <h2 id="overlayTitle">긴급한 랜턴을 고르세요</h2>
+        <p id="overlayText">랜턴이 박자선에 닿을 때 가장 높은 PRIORITY 번호를 누르세요. 같은 우선순위면 더 아래쪽 랜턴이 먼저입니다.</p>
+        <button id="startButton" type="button">시작</button>
+      </div>
+    </section>
+
+    <p id="messageLine" class="message">박자선에 닿는 순간 우선순위가 가장 높은 랜턴 번호를 누르세요.</p>
+  </main>
+</body>
+</html>

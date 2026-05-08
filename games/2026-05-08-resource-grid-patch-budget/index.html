@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>패치 예산</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">2026-05-08 Daily Game</p>
+        <h1>패치 예산</h1>
+        <p class="summary">한정된 크레딧으로 마감이 임박하고 심각도가 높은 결함부터 안정화하세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="status-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>안정화</span>
+        <strong><span id="scoreValue">0</span>/<span id="targetValue">10</span></strong>
+      </article>
+      <article>
+        <span>마감 초과</span>
+        <strong><span id="faultValue">0</span>/3</strong>
+      </article>
+      <article>
+        <span>크레딧</span>
+        <strong><span id="creditValue">5</span>/<span id="creditMaxValue">5</span></strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="패치 예산 플레이 영역">
+      <div class="board-wrap">
+        <div id="gridBoard" class="grid-board" role="grid" aria-label="시스템 결함 격자"></div>
+      </div>
+
+      <aside class="rule-panel" aria-label="플레이 규칙">
+        <p><strong>S</strong>는 결함 심각도입니다. 한 번 패치할 때마다 1씩 줄어듭니다.</p>
+        <p><strong>D</strong>는 남은 마감 시간입니다. 0이 되면 마감 초과가 누적됩니다.</p>
+        <p>같은 상황이면 D가 낮고 S가 높은 셀부터 선택하세요.</p>
+      </aside>
+
+      <div id="overlay" class="overlay">
+        <p id="overlayLabel" class="overlay-label">시작</p>
+        <h2 id="overlayTitle">패치 크레딧을 배분하세요</h2>
+        <p id="overlayText">결함 셀을 탭하면 크레딧 1개를 써서 심각도를 낮춥니다. 목표 안정화 수를 채우면 다음 라운드로 자동 진입합니다.</p>
+        <button id="startButton" type="button">시작</button>
+      </div>
+    </section>
+
+    <p id="messageLine" class="message">결함이 생기면 마감이 짧은 셀부터 탭하세요. 키보드는 1~9, QWER/ASDF/ZXCV로 셀을 선택합니다.</p>
+  </main>
+</body>
+</html>

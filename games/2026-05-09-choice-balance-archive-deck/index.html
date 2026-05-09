@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아카이브 덱</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">2026-05-09 Daily Game</p>
+        <h1>아카이브 덱</h1>
+        <p class="summary">작업 카드를 골라 정돈도, 열기, 신뢰를 안전 구간 안에 오래 유지하세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="status-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>승인</span>
+        <strong><span id="scoreValue">0</span>/<span id="targetValue">9</span></strong>
+      </article>
+      <article>
+        <span>안전 구간</span>
+        <strong id="safeValue">20-80</strong>
+      </article>
+      <article>
+        <span>변동폭</span>
+        <strong id="volatilityValue">1</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="아카이브 덱 플레이 영역">
+      <section class="meter-panel" aria-label="아카이브 지표">
+        <article class="meter-card" data-track="order">
+          <div>
+            <span>정돈도</span>
+            <strong id="orderValue">50</strong>
+          </div>
+          <div class="meter"><span id="orderFill"></span></div>
+        </article>
+        <article class="meter-card" data-track="heat">
+          <div>
+            <span>열기</span>
+            <strong id="heatValue">50</strong>
+          </div>
+          <div class="meter"><span id="heatFill"></span></div>
+        </article>
+        <article class="meter-card" data-track="trust">
+          <div>
+            <span>신뢰</span>
+            <strong id="trustValue">50</strong>
+          </div>
+          <div class="meter"><span id="trustFill"></span></div>
+        </article>
+      </section>
+
+      <section class="deck-panel" aria-label="선택 가능한 작업 카드">
+        <button class="choice-card" type="button" data-card="0"></button>
+        <button class="choice-card" type="button" data-card="1"></button>
+        <button class="choice-card" type="button" data-card="2"></button>
+      </section>
+
+      <aside class="rule-panel" aria-label="플레이 규칙">
+        <p>매 턴 카드 하나를 고릅니다. 카드의 +와 -가 즉시 세 지표에 반영됩니다.</p>
+        <p>세 지표는 모두 안전 구간 안에 있어야 합니다. 경계 밖으로 나가면 실패입니다.</p>
+        <p>키보드는 1, 2, 3으로 카드를 선택합니다.</p>
+      </aside>
+
+      <div id="overlay" class="overlay">
+        <p id="overlayLabel" class="overlay-label">시작</p>
+        <h2 id="overlayTitle">세 지표를 동시에 관리하세요</h2>
+        <p id="overlayText">세 장의 작업 카드 중 하나를 선택하세요. 목표 승인 수를 채우면 더 흔들리는 다음 라운드로 자동 진입합니다.</p>
+        <button id="startButton" type="button">시작</button>
+      </div>
+    </section>
+
+    <p id="messageLine" class="message">카드의 변화를 적용한 뒤에도 세 지표가 20-80 안에 남는 선택을 찾으세요.</p>
+  </main>
+</body>
+</html>

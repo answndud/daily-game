@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>벡터 지도사</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">2026-05-10 Daily Game</p>
+        <h1>벡터 지도사</h1>
+        <p class="summary">상하좌우 명령으로 표식을 모두 회수하고 이동 제한 안에 출구로 이동하세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="status-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>표식</span>
+        <strong><span id="markValue">0</span>/<span id="markTotalValue">3</span></strong>
+      </article>
+      <article>
+        <span>이동</span>
+        <strong><span id="moveValue">0</span>/<span id="moveLimitValue">12</span></strong>
+      </article>
+      <article>
+        <span>지도</span>
+        <strong id="sizeValue">5x5</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="벡터 지도사 플레이 영역">
+      <div class="map-panel">
+        <div id="mapGrid" class="map-grid" role="grid" aria-label="경로 지도"></div>
+      </div>
+
+      <section class="control-panel" aria-label="방향 조작">
+        <p>장애물과 경계를 피해서 모든 표식을 회수한 뒤 출구로 들어가세요.</p>
+        <div class="direction-pad">
+          <button type="button" data-dir="up" aria-label="위로 이동">↑</button>
+          <button type="button" data-dir="left" aria-label="왼쪽으로 이동">←</button>
+          <button type="button" data-dir="down" aria-label="아래로 이동">↓</button>
+          <button type="button" data-dir="right" aria-label="오른쪽으로 이동">→</button>
+        </div>
+        <p class="hint">키보드 방향키와 WASD도 사용할 수 있습니다.</p>
+      </section>
+
+      <div id="overlay" class="overlay">
+        <p id="overlayLabel" class="overlay-label">시작</p>
+        <h2 id="overlayTitle">경로를 먼저 읽으세요</h2>
+        <p id="overlayText">표식은 모두 회수해야 합니다. 이동 제한을 넘기거나 장애물에 부딪히면 라운드 1로 돌아갑니다.</p>
+        <button id="startButton" type="button">시작</button>
+      </div>
+    </section>
+
+    <p id="messageLine" class="message">표식 순서는 자유입니다. 다만 출구는 모든 표식을 회수한 뒤에만 열립니다.</p>
+  </main>
+</body>
+</html>

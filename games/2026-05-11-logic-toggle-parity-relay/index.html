@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>패리티 릴레이</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">2026-05-11 Daily Game</p>
+        <h1>패리티 릴레이</h1>
+        <p class="summary">행과 열을 뒤집어 왼쪽 현재 격자를 오른쪽 목표 패턴과 일치시키세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="status-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>토글</span>
+        <strong><span id="moveValue">0</span>/<span id="limitValue">8</span></strong>
+      </article>
+      <article>
+        <span>격자</span>
+        <strong id="sizeValue">3x3</strong>
+      </article>
+      <article>
+        <span>일치</span>
+        <strong><span id="matchValue">0</span>%</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="패리티 릴레이 플레이 영역">
+      <section class="board-pair" aria-label="현재 격자와 목표 격자">
+        <article>
+          <h2>현재</h2>
+          <div id="currentGrid" class="parity-grid" role="grid" aria-label="현재 패턴"></div>
+        </article>
+        <article>
+          <h2>목표</h2>
+          <div id="targetGrid" class="parity-grid target-grid" role="grid" aria-label="목표 패턴"></div>
+        </article>
+      </section>
+
+      <section class="command-panel" aria-label="토글 명령">
+        <p>한 번 누르면 해당 행 또는 열 전체가 반전됩니다.</p>
+        <div>
+          <h3>행</h3>
+          <div id="rowControls" class="control-list"></div>
+        </div>
+        <div>
+          <h3>열</h3>
+          <div id="colControls" class="control-list"></div>
+        </div>
+        <p class="hint">키보드: 행은 1-5, 열은 QWERT.</p>
+      </section>
+
+      <div id="overlay" class="overlay">
+        <p id="overlayLabel" class="overlay-label">시작</p>
+        <h2 id="overlayTitle">패턴의 차이를 읽으세요</h2>
+        <p id="overlayText">행과 열 토글만 사용해 현재 격자를 목표와 같게 만드세요. 제한 횟수를 넘기면 라운드 1로 돌아갑니다.</p>
+        <button id="startButton" type="button">시작</button>
+      </div>
+    </section>
+
+    <p id="messageLine" class="message">현재 격자와 목표 격자의 다른 줄을 찾고, 행/열 반전 조합을 선택하세요.</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오비트 포켓</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">2026-05-12 Daily Game</p>
+        <h1>오비트 포켓</h1>
+        <p class="summary">짧은 방향 펄스로 관성체를 밀어 코어를 회수하고 균열을 피하세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="status-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>코어</span>
+        <strong><span id="coreValue">0</span>/<span id="coreTotalValue">4</span></strong>
+      </article>
+      <article>
+        <span>균열</span>
+        <strong><span id="faultValue">0</span>/3</strong>
+      </article>
+      <article>
+        <span>속도</span>
+        <strong id="speedValue">0.0</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="오비트 포켓 플레이 영역">
+      <canvas id="gameCanvas" width="760" height="760"></canvas>
+      <section class="control-panel" aria-label="방향 펄스 조작">
+        <p>버튼을 누를 때마다 퍽에 짧은 힘이 더해집니다. 계속 누르는 게임이 아니라, 방향을 예측해 조금씩 보정하는 게임입니다.</p>
+        <div class="direction-pad">
+          <button type="button" data-dir="up" aria-label="위 펄스">↑</button>
+          <button type="button" data-dir="left" aria-label="왼쪽 펄스">←</button>
+          <button type="button" data-dir="down" aria-label="아래 펄스">↓</button>
+          <button type="button" data-dir="right" aria-label="오른쪽 펄스">→</button>
+        </div>
+        <p class="hint">키보드 방향키와 WASD도 사용할 수 있습니다.</p>
+      </section>
+
+      <div id="overlay" class="overlay">
+        <p id="overlayLabel" class="overlay-label">시작</p>
+        <h2 id="overlayTitle">관성을 읽고 펄스를 주세요</h2>
+        <p id="overlayText">코어를 모두 회수하면 다음 라운드로 넘어갑니다. 붉은 균열에 세 번 닿으면 라운드 1로 돌아갑니다.</p>
+        <button id="startButton" type="button">시작</button>
+      </div>
+    </section>
+
+    <p id="messageLine" class="message">큰 힘보다 작은 보정이 안전합니다. 벽은 튕기지만 균열은 위험합니다.</p>
+  </main>
+</body>
+</html>

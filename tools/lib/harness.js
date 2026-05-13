@@ -209,6 +209,28 @@ function buildCatalogHtml(entries) {
   const statusLabel = entryCount > 0
     ? `공개된 게임 ${entryCount}개`
     : "첫 게임 대기 중";
+  const flagshipDir = path.join(repoRoot(), "flagship", "deep-station-recovery-log");
+  const flagshipMetaPath = path.join(flagshipDir, "meta.json");
+  const flagshipCard = fs.existsSync(flagshipMetaPath)
+    ? (() => {
+        const meta = readJson(flagshipMetaPath);
+        return [
+          '<section class="featured-card">',
+          '  <div>',
+          '    <p class="section-label">Flagship</p>',
+          `    <h2>${escapeHtml(meta.title)}</h2>`,
+          `    <p class="featured-copy">${escapeHtml(meta.description)}</p>`,
+          '    <div class="game-meta-row">',
+          `      <p class="game-meta">${escapeHtml(meta.genre)}</p>`,
+          `      <p class="game-meta">${escapeHtml(meta.controls)}</p>`,
+          `      <p class="game-meta">${escapeHtml(meta.sessionLength)}</p>`,
+          "    </div>",
+          "  </div>",
+          '  <a class="featured-link" href="./flagship/deep-station-recovery-log/index.html">플래그십 플레이</a>',
+          "</section>",
+        ].join("\n");
+      })()
+    : "";
 
   const cards = entries.length
     ? entries
@@ -280,6 +302,7 @@ function buildCatalogHtml(entries) {
       gap: 18px;
     }
     .hero,
+    .featured-card,
     .section-head,
     .game-card,
     .empty-state,
@@ -290,6 +313,42 @@ function buildCatalogHtml(entries) {
     }
     .hero {
       padding: 22px;
+    }
+    .featured-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 20px;
+      background: linear-gradient(135deg, #171d1b, #2a2b24);
+      color: #f5f2ea;
+    }
+    .featured-card h2 {
+      margin: 8px 0 10px;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      letter-spacing: -0.045em;
+    }
+    .featured-card .section-label,
+    .featured-card .featured-copy {
+      color: #c8c4b7;
+    }
+    .featured-copy {
+      max-width: 68ch;
+      margin: 0 0 14px;
+      line-height: 1.55;
+    }
+    .featured-link {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid rgba(245, 242, 234, 0.36);
+      border-radius: var(--radius-sm);
+      color: #f5f2ea;
+      text-decoration: none;
+      font-weight: 700;
     }
     .eyebrow,
     .section-label,
@@ -446,6 +505,7 @@ function buildCatalogHtml(entries) {
         padding: 12px 0 36px;
       }
       .hero-top,
+      .featured-card,
       .section-head {
         flex-direction: column;
         align-items: start;
@@ -486,6 +546,7 @@ function buildCatalogHtml(entries) {
           </article>
         </section>
       </section>
+${flagshipCard ? `      ${flagshipCard}\n` : ""}      <section class="section-head">
       <section class="section-head">
         <div>
           <p class="section-label">카탈로그</p>

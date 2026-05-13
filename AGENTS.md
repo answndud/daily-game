@@ -22,6 +22,15 @@
   - `meta.json`
 - The repository root must contain an `index.html` catalog page that lists all generated games in date order.
 
+## Flagship Game Exception
+- A flagship game may live under `flagship/<slug>/` instead of `games/YYYY-MM-DD-slug/`.
+- Flagship work is not part of the daily duplicate-date policy and should not be forced into the daily catalog unless explicitly requested.
+- Flagship games must remain static-hostable and use only local `html`, `css`, and `javascript`.
+- Local ES modules and multiple local JS files are allowed for flagship games when they improve maintainability.
+- No external libraries, network calls, build steps, image assets, or sound assets are allowed unless the user explicitly changes the repository constraints.
+- Favor canvas rendering, CSS, procedural data, Web Audio synthesis, `localStorage`, and deterministic generation to raise quality without breaking GitHub Pages compatibility.
+- Use `docs/flagship-game-plan.md` as the planning source before implementing or changing a flagship game.
+
 ## Metadata Contract
 - Each `meta.json` must include:
   - `title`

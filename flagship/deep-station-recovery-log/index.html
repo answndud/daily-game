@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep Station: Recovery Log</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./src/main.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="header">
+      <div>
+        <p class="eyebrow">Flagship Prototype</p>
+        <h1>Deep Station</h1>
+        <p class="summary">침수된 심해 기지에서 전력, 산소, 출구 제어를 복구하고 다음 섹터로 이동하세요.</p>
+      </div>
+      <div class="header-actions">
+        <button id="muteButton" type="button" class="secondary-button">Sound On</button>
+        <button id="resetButton" type="button" class="secondary-button">New Run</button>
+      </div>
+    </header>
+
+    <section class="hud" aria-label="run status">
+      <article>
+        <span>Sector</span>
+        <strong id="sectorValue">1</strong>
+      </article>
+      <article>
+        <span>Oxygen</span>
+        <strong><span id="oxygenValue">100</span>%</strong>
+      </article>
+      <article>
+        <span>Battery</span>
+        <strong><span id="batteryValue">100</span>%</strong>
+      </article>
+      <article>
+        <span>Integrity</span>
+        <strong><span id="integrityValue">100</span>%</strong>
+      </article>
+      <article>
+        <span>Best</span>
+        <strong id="bestValue">1</strong>
+      </article>
+      <article>
+        <span>Scanner</span>
+        <strong><span id="scannerValue">100</span>%</strong>
+      </article>
+    </section>
+
+    <section class="game-layout">
+      <div class="viewport-card">
+        <canvas id="gameCanvas" width="900" height="900" aria-label="Deep Station game map"></canvas>
+        <div id="overlay" class="overlay">
+          <p id="overlayLabel" class="overlay-label">Ready</p>
+          <h2 id="overlayTitle">Recovery run 준비</h2>
+          <p id="overlayText">전력 릴레이와 산소 밸브를 복구한 뒤 출구 해치로 이동하세요. 실패하면 섹터 1부터 다시 시작합니다.</p>
+          <button id="startButton" type="button">Start Run</button>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <section>
+          <h2>Objectives</h2>
+          <ul class="checklist">
+            <li id="powerTask">Power relay offline</li>
+            <li id="oxygenTask">Oxygen valve offline</li>
+            <li id="exitTask">Exit hatch locked</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Controls</h2>
+          <div class="pad">
+            <button type="button" data-dir="up">↑</button>
+            <button type="button" data-dir="left">←</button>
+            <button id="interactButton" type="button" class="interact">Interact</button>
+            <button type="button" data-dir="right">→</button>
+            <button type="button" data-dir="down">↓</button>
+            <button id="scanButton" type="button" class="scan">Scan</button>
+          </div>
+          <p class="hint">키보드: WASD/방향키 이동, Space/Enter 상호작용, F 스캔.</p>
+        </section>
+
+        <section>
+          <h2>Recovered Logs</h2>
+          <p id="logLine" class="message">아직 복구된 로그가 없습니다.</p>
+        </section>
+
+        <section>
+          <h2>Log</h2>
+          <p id="messageLine" class="message">Start Run을 눌러 섹터 1을 시작하세요.</p>
+        </section>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

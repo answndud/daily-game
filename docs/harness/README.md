@@ -22,6 +22,8 @@ This repository uses a minimal Codex-first harness for generating one static web
   - Verifies repository-wide consistency.
 - `tools/verify-skills.js`
   - Verifies local skill frontmatter and basic repository-skill structure.
+- `tools/verify-flagship.js`
+  - Verifies the dedicated flagship game structure, local-only references, and ES module syntax.
 
 ## Default Workflow
 1. Use the `game-creator` skill with the target date.
@@ -41,4 +43,5 @@ node tools/build-catalog.js
 node tools/verify-game.js games/2026-04-13-some-slug
 node tools/verify-repo.js
 node tools/verify-skills.js
+node tools/verify-flagship.js
 ```

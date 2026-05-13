@@ -38,6 +38,7 @@
       gap: 18px;
     }
     .hero,
+    .featured-card,
     .section-head,
     .game-card,
     .empty-state,
@@ -48,6 +49,42 @@
     }
     .hero {
       padding: 22px;
+    }
+    .featured-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 20px;
+      background: linear-gradient(135deg, #171d1b, #2a2b24);
+      color: #f5f2ea;
+    }
+    .featured-card h2 {
+      margin: 8px 0 10px;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      letter-spacing: -0.045em;
+    }
+    .featured-card .section-label,
+    .featured-card .featured-copy {
+      color: #c8c4b7;
+    }
+    .featured-copy {
+      max-width: 68ch;
+      margin: 0 0 14px;
+      line-height: 1.55;
+    }
+    .featured-link {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid rgba(245, 242, 234, 0.36);
+      border-radius: var(--radius-sm);
+      color: #f5f2ea;
+      text-decoration: none;
+      font-weight: 700;
     }
     .eyebrow,
     .section-label,
@@ -204,6 +241,7 @@
         padding: 12px 0 36px;
       }
       .hero-top,
+      .featured-card,
       .section-head {
         flex-direction: column;
         align-items: start;
@@ -244,6 +282,20 @@
           </article>
         </section>
       </section>
+      <section class="featured-card">
+  <div>
+    <p class="section-label">Flagship</p>
+    <h2>Deep Station: Recovery Log</h2>
+    <p class="featured-copy">A static flagship web game prototype with canvas rendering, local modules, procedural sectors, generated audio, localStorage records, and sector-based survival progression.</p>
+    <div class="game-meta-row">
+      <p class="game-meta">tactical survival puzzle</p>
+      <p class="game-meta">directional movement and interact</p>
+      <p class="game-meta">5-15 minutes</p>
+    </div>
+  </div>
+  <a class="featured-link" href="./flagship/deep-station-recovery-log/index.html">플래그십 플레이</a>
+</section>
+      <section class="section-head">
       <section class="section-head">
         <div>
           <p class="section-label">카탈로그</p>

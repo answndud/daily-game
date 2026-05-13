@@ -1,0 +1,9 @@
+{
+  "title": "Deep Station: Recovery Log",
+  "slug": "deep-station-recovery-log",
+  "tagline": "Restore power, oxygen, and exit control inside a failing underwater station.",
+  "genre": "tactical survival puzzle",
+  "controls": "directional movement and interact",
+  "sessionLength": "5-15 minutes",
+  "description": "A static flagship web game prototype with canvas rendering, local modules, procedural sectors, generated audio, localStorage records, and sector-based survival progression."
+}

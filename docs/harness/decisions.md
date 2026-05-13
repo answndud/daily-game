@@ -13,6 +13,8 @@
   - v1 focuses on file structure, metadata, path, and content checks.
 - Minimal planning support
   - Today’s game ideation starts from `tools/plan-game.js`, but final concept selection is governed by `game-creator`, `AGENTS.md`, and the retrospective.
+- Separate flagship verification
+  - The flagship game may use a multi-file local ES module structure, so it is verified with `tools/verify-flagship.js` instead of being forced into the daily game harness.
 
 ## Deferred
 - MCP integration

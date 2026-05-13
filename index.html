@@ -167,7 +167,7 @@
     .game-grid {
       display: grid;
       gap: 16px;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
     .game-card,
     .empty-state {
@@ -184,6 +184,10 @@
       border-color: var(--line-strong);
       background: var(--panel-muted);
       transform: translateY(-1px);
+    }
+    .flagship-grid-card {
+      border-color: #9fa9a1;
+      background: linear-gradient(180deg, #ffffff, #f1f4f1);
     }
     .game-meta-row {
       display: flex;
@@ -249,6 +253,14 @@
       .stats {
         grid-template-columns: 1fr;
       }
+      .game-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (min-width: 761px) and (max-width: 980px) {
+      .game-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
   </style>
 </head>
@@ -295,7 +307,7 @@
   </div>
   <a class="featured-link" href="./flagship/deep-station-recovery-log/index.html">플래그십 플레이</a>
 </section>
-      <section class="section-head">
+
       <section class="section-head">
         <div>
           <p class="section-label">카탈로그</p>
@@ -304,6 +316,18 @@
         </div>
       </section>
       <section class="game-grid">
+<a class="game-card flagship-grid-card" href="./flagship/deep-station-recovery-log/index.html" aria-label="Deep Station: Recovery Log 플래그십 게임 열기">
+  <div class="game-meta-row">
+    <p class="game-date">FLAGSHIP</p>
+    <p class="game-meta">tactical survival puzzle</p>
+    <p class="game-meta">directional movement and interact</p>
+    <p class="game-meta">5-15 minutes</p>
+  </div>
+  <h2>Deep Station: Recovery Log</h2>
+  <p class="game-tagline">Restore power, oxygen, and exit control inside a failing underwater station.</p>
+  <p class="game-description">A static flagship web game prototype with canvas rendering, local modules, procedural sectors, generated audio, localStorage records, and sector-based survival progression.</p>
+</a>
+
 <a class="game-card" href="./games/2026-05-12-impulse-physics-orbit-pocket/index.html" aria-label="오비트 포켓 게임 열기">
   <div class="game-meta-row">
     <p class="game-date">2026-05-12</p>

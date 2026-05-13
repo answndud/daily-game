@@ -211,25 +211,40 @@ function buildCatalogHtml(entries) {
     : "첫 게임 대기 중";
   const flagshipDir = path.join(repoRoot(), "flagship", "deep-station-recovery-log");
   const flagshipMetaPath = path.join(flagshipDir, "meta.json");
-  const flagshipCard = fs.existsSync(flagshipMetaPath)
+  const flagshipMeta = fs.existsSync(flagshipMetaPath) ? readJson(flagshipMetaPath) : null;
+  const flagshipCard = flagshipMeta
     ? (() => {
-        const meta = readJson(flagshipMetaPath);
         return [
           '<section class="featured-card">',
           '  <div>',
           '    <p class="section-label">Flagship</p>',
-          `    <h2>${escapeHtml(meta.title)}</h2>`,
-          `    <p class="featured-copy">${escapeHtml(meta.description)}</p>`,
+          `    <h2>${escapeHtml(flagshipMeta.title)}</h2>`,
+          `    <p class="featured-copy">${escapeHtml(flagshipMeta.description)}</p>`,
           '    <div class="game-meta-row">',
-          `      <p class="game-meta">${escapeHtml(meta.genre)}</p>`,
-          `      <p class="game-meta">${escapeHtml(meta.controls)}</p>`,
-          `      <p class="game-meta">${escapeHtml(meta.sessionLength)}</p>`,
+          `      <p class="game-meta">${escapeHtml(flagshipMeta.genre)}</p>`,
+          `      <p class="game-meta">${escapeHtml(flagshipMeta.controls)}</p>`,
+          `      <p class="game-meta">${escapeHtml(flagshipMeta.sessionLength)}</p>`,
           "    </div>",
           "  </div>",
           '  <a class="featured-link" href="./flagship/deep-station-recovery-log/index.html">플래그십 플레이</a>',
           "</section>",
         ].join("\n");
       })()
+    : "";
+  const flagshipGridCard = flagshipMeta
+    ? [
+        '<a class="game-card flagship-grid-card" href="./flagship/deep-station-recovery-log/index.html" aria-label="Deep Station: Recovery Log 플래그십 게임 열기">',
+        '  <div class="game-meta-row">',
+        '    <p class="game-date">FLAGSHIP</p>',
+        `    <p class="game-meta">${escapeHtml(flagshipMeta.genre)}</p>`,
+        `    <p class="game-meta">${escapeHtml(flagshipMeta.controls)}</p>`,
+        `    <p class="game-meta">${escapeHtml(flagshipMeta.sessionLength)}</p>`,
+        "  </div>",
+        `  <h2>${escapeHtml(flagshipMeta.title)}</h2>`,
+        `  <p class="game-tagline">${escapeHtml(flagshipMeta.tagline)}</p>`,
+        `  <p class="game-description">${escapeHtml(flagshipMeta.description)}</p>`,
+        "</a>",
+      ].join("\n")
     : "";
 
   const cards = entries.length
@@ -431,7 +446,7 @@ function buildCatalogHtml(entries) {
     .game-grid {
       display: grid;
       gap: 16px;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
     .game-card,
     .empty-state {
@@ -448,6 +463,10 @@ function buildCatalogHtml(entries) {
       border-color: var(--line-strong);
       background: var(--panel-muted);
       transform: translateY(-1px);
+    }
+    .flagship-grid-card {
+      border-color: #9fa9a1;
+      background: linear-gradient(180deg, #ffffff, #f1f4f1);
     }
     .game-meta-row {
       display: flex;
@@ -513,6 +532,14 @@ function buildCatalogHtml(entries) {
       .stats {
         grid-template-columns: 1fr;
       }
+      .game-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (min-width: 761px) and (max-width: 980px) {
+      .game-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
   </style>
 </head>
@@ -546,7 +573,7 @@ function buildCatalogHtml(entries) {
           </article>
         </section>
       </section>
-${flagshipCard ? `      ${flagshipCard}\n` : ""}      <section class="section-head">
+${flagshipCard ? `      ${flagshipCard}\n` : ""}
       <section class="section-head">
         <div>
           <p class="section-label">카탈로그</p>
@@ -555,6 +582,7 @@ ${flagshipCard ? `      ${flagshipCard}\n` : ""}      <section class="section-he
         </div>
       </section>
       <section class="game-grid">
+${flagshipGridCard ? `${flagshipGridCard}\n` : ""}
 ${cards}
       </section>
     </div>

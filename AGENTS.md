@@ -71,6 +71,7 @@
 - Include a restart path and clear win/loss or score feedback.
 - Use relative paths only so the game works on static hosting and local file layouts.
 - Apply that guide selectively: preserve readability, restrained surfaces, and scan-friendly metadata layout, while allowing game-specific color only when the mechanic truly needs it.
+- Write player-facing game text in Korean by default, including titles, controls, HUD labels, buttons, metadata, instructions, success/failure messages, and catalog copy.
 
 ## Catalog Rules
 - The root catalog must show, at minimum, the title, date, one-line description, and link for each game.

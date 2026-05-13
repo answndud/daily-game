@@ -217,10 +217,11 @@ function buildCatalogHtml(entries) {
         return [
           '<section class="featured-card">',
           '  <div>',
-          '    <p class="section-label">Flagship</p>',
+          '    <p class="section-label">플래그십</p>',
           `    <h2>${escapeHtml(flagshipMeta.title)}</h2>`,
           `    <p class="featured-copy">${escapeHtml(flagshipMeta.description)}</p>`,
           '    <div class="game-meta-row">',
+          `      <p class="game-date">${escapeHtml(flagshipMeta.date || "플래그십")}</p>`,
           `      <p class="game-meta">${escapeHtml(flagshipMeta.genre)}</p>`,
           `      <p class="game-meta">${escapeHtml(flagshipMeta.controls)}</p>`,
           `      <p class="game-meta">${escapeHtml(flagshipMeta.sessionLength)}</p>`,
@@ -233,9 +234,9 @@ function buildCatalogHtml(entries) {
     : "";
   const flagshipGridCard = flagshipMeta
     ? [
-        '<a class="game-card flagship-grid-card" href="./flagship/deep-station-recovery-log/index.html" aria-label="Deep Station: Recovery Log 플래그십 게임 열기">',
+        `<a class="game-card flagship-grid-card" href="./flagship/deep-station-recovery-log/index.html" aria-label="${escapeHtml(flagshipMeta.title)} 플래그십 게임 열기">`,
         '  <div class="game-meta-row">',
-        '    <p class="game-date">FLAGSHIP</p>',
+        `    <p class="game-date">${escapeHtml(flagshipMeta.date || "플래그십")}</p>`,
         `    <p class="game-meta">${escapeHtml(flagshipMeta.genre)}</p>`,
         `    <p class="game-meta">${escapeHtml(flagshipMeta.controls)}</p>`,
         `    <p class="game-meta">${escapeHtml(flagshipMeta.sessionLength)}</p>`,

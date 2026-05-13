@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deep Station: Recovery Log</title>
+  <title>딥 스테이션: 복구 기록</title>
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./src/main.js"></script>
 </head>
@@ -11,85 +11,85 @@
   <main class="shell">
     <header class="header">
       <div>
-        <p class="eyebrow">Flagship Prototype</p>
-        <h1>Deep Station</h1>
+        <p class="eyebrow">플래그십 프로토타입</p>
+        <h1>딥 스테이션</h1>
         <p class="summary">침수된 심해 기지에서 전력, 산소, 출구 제어를 복구하고 다음 섹터로 이동하세요.</p>
       </div>
       <div class="header-actions">
-        <button id="muteButton" type="button" class="secondary-button">Sound On</button>
-        <button id="resetButton" type="button" class="secondary-button">New Run</button>
+        <button id="muteButton" type="button" class="secondary-button">소리 켜짐</button>
+        <button id="resetButton" type="button" class="secondary-button">새 런</button>
       </div>
     </header>
 
     <section class="hud" aria-label="run status">
       <article>
-        <span>Sector</span>
+        <span>섹터</span>
         <strong id="sectorValue">1</strong>
       </article>
       <article>
-        <span>Oxygen</span>
+        <span>산소</span>
         <strong><span id="oxygenValue">100</span>%</strong>
       </article>
       <article>
-        <span>Battery</span>
+        <span>배터리</span>
         <strong><span id="batteryValue">100</span>%</strong>
       </article>
       <article>
-        <span>Integrity</span>
+        <span>내구도</span>
         <strong><span id="integrityValue">100</span>%</strong>
       </article>
       <article>
-        <span>Best</span>
+        <span>최고</span>
         <strong id="bestValue">1</strong>
       </article>
       <article>
-        <span>Scanner</span>
+        <span>스캐너</span>
         <strong><span id="scannerValue">100</span>%</strong>
       </article>
     </section>
 
     <section class="game-layout">
       <div class="viewport-card">
-        <canvas id="gameCanvas" width="900" height="900" aria-label="Deep Station game map"></canvas>
+        <canvas id="gameCanvas" width="900" height="900" aria-label="딥 스테이션 게임 지도"></canvas>
         <div id="overlay" class="overlay">
-          <p id="overlayLabel" class="overlay-label">Ready</p>
+          <p id="overlayLabel" class="overlay-label">준비</p>
           <h2 id="overlayTitle">Recovery run 준비</h2>
           <p id="overlayText">전력 릴레이와 산소 밸브를 복구한 뒤 출구 해치로 이동하세요. 실패하면 섹터 1부터 다시 시작합니다.</p>
-          <button id="startButton" type="button">Start Run</button>
+          <button id="startButton" type="button">런 시작</button>
         </div>
       </div>
 
       <aside class="panel">
         <section>
-          <h2>Objectives</h2>
+          <h2>목표</h2>
           <ul class="checklist">
-            <li id="powerTask">Power relay offline</li>
-            <li id="oxygenTask">Oxygen valve offline</li>
-            <li id="exitTask">Exit hatch locked</li>
+            <li id="powerTask">전력 릴레이 꺼짐</li>
+            <li id="oxygenTask">산소 밸브 불안정</li>
+            <li id="exitTask">출구 해치 잠김</li>
           </ul>
         </section>
 
         <section>
-          <h2>Controls</h2>
+          <h2>조작</h2>
           <div class="pad">
             <button type="button" data-dir="up">↑</button>
             <button type="button" data-dir="left">←</button>
-            <button id="interactButton" type="button" class="interact">Interact</button>
+            <button id="interactButton" type="button" class="interact">상호작용</button>
             <button type="button" data-dir="right">→</button>
             <button type="button" data-dir="down">↓</button>
-            <button id="scanButton" type="button" class="scan">Scan</button>
+            <button id="scanButton" type="button" class="scan">스캔</button>
           </div>
           <p class="hint">키보드: WASD/방향키 이동, Space/Enter 상호작용, F 스캔.</p>
         </section>
 
         <section>
-          <h2>Recovered Logs</h2>
+          <h2>복구한 로그</h2>
           <p id="logLine" class="message">아직 복구된 로그가 없습니다.</p>
         </section>
 
         <section>
-          <h2>Log</h2>
-          <p id="messageLine" class="message">Start Run을 눌러 섹터 1을 시작하세요.</p>
+          <h2>상태 로그</h2>
+          <p id="messageLine" class="message">런 시작을 눌러 섹터 1을 시작하세요.</p>
         </section>
       </aside>
     </section>

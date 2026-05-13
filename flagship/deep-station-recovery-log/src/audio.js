@@ -3,7 +3,11 @@ export function createAudio(records) {
 
   function ensureContext() {
     if (!context) {
-      context = new AudioContext();
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) {
+        return null;
+      }
+      context = new AudioContextClass();
     }
     return context;
   }
@@ -13,6 +17,9 @@ export function createAudio(records) {
       return;
     }
     const audio = ensureContext();
+    if (!audio) {
+      return;
+    }
     const oscillator = audio.createOscillator();
     const gain = audio.createGain();
     oscillator.type = type;
@@ -21,8 +28,12 @@ export function createAudio(records) {
     gain.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + duration);
     oscillator.connect(gain);
     gain.connect(audio.destination);
-    oscillator.start();
-    oscillator.stop(audio.currentTime + duration);
+    try {
+      oscillator.start();
+      oscillator.stop(audio.currentTime + duration);
+    } catch {
+      // Audio must never block gameplay.
+    }
   }
 
   return {

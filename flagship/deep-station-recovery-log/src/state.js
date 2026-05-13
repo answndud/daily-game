@@ -15,7 +15,7 @@ export function createGameState(records) {
     scanner: 100,
     scanPulseUntil: 0,
     explored: new Set(),
-    message: "Start Run을 눌러 섹터 1을 시작하세요.",
+    message: "런 시작을 눌러 섹터 1을 시작하세요.",
     lastTick: 0,
   };
 }
@@ -84,14 +84,14 @@ export function interact(state) {
     }
     state.battery -= 12;
     state.powerOnline = true;
-    unlockLog(state, "Relay ignition recovered");
+    unlockLog(state, "전력 릴레이 점화 기록");
     state.message = "전력 릴레이 복구. 잠긴 문과 출구 제어가 응답합니다.";
     return "repair";
   }
   if (tile === TILE.valve) {
     state.oxygenOnline = true;
     state.oxygen = Math.min(100, state.oxygen + 32);
-    unlockLog(state, "Oxygen valve route stabilized");
+    unlockLog(state, "산소 밸브 안정화 기록");
     state.message = "산소 밸브 복구. 산소 소모가 완화됩니다.";
     return "repair";
   }
@@ -99,7 +99,7 @@ export function interact(state) {
     state.terminalUsed = true;
     state.battery = Math.min(100, state.battery + 18);
     revealAll(state);
-    unlockLog(state, `Sector ${state.sector.index} map fragment`);
+    unlockLog(state, `섹터 ${state.sector.index} 지도 조각`);
     state.message = "터미널 접속. 지도와 예비 전력을 확보했습니다.";
     return "repair";
   }
@@ -174,7 +174,7 @@ function checkExit(state) {
   }
   const next = state.sector.index + 1;
   state.records.bestSector = Math.max(state.records.bestSector, next);
-  unlockLog(state, `Reached sector ${next}`);
+  unlockLog(state, `섹터 ${next} 도달 기록`);
   loadSector(state, next);
   state.phase = "running";
   state.message = `섹터 ${next} 진입. 기지 압력이 더 불안정합니다.`;
@@ -209,9 +209,9 @@ function damage(state, amount, message) {
 
 function describeTile(tile) {
   if (tile === TILE.water) return "침수 구역입니다. 산소와 배터리 소모가 큽니다.";
-  if (tile === TILE.relay) return "전력 릴레이입니다. Interact로 복구하세요.";
-  if (tile === TILE.valve) return "산소 밸브입니다. Interact로 안정화하세요.";
-  if (tile === TILE.terminal) return "터미널입니다. Interact로 지도와 전력을 확보하세요.";
-  if (tile === TILE.exit) return "출구 해치입니다. 목표를 완료했다면 Interact 또는 이동으로 진입하세요.";
+  if (tile === TILE.relay) return "전력 릴레이입니다. 상호작용으로 복구하세요.";
+  if (tile === TILE.valve) return "산소 밸브입니다. 상호작용으로 안정화하세요.";
+  if (tile === TILE.terminal) return "터미널입니다. 상호작용으로 지도와 전력을 확보하세요.";
+  if (tile === TILE.exit) return "출구 해치입니다. 목표를 완료했다면 상호작용 또는 이동으로 진입하세요.";
   return "기지 복도를 이동 중입니다.";
 }

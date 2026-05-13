@@ -3,6 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
+const { pathToFileURL } = require("url");
 
 const repoRoot = path.resolve(__dirname, "..");
 const flagshipRoot = path.join(repoRoot, "flagship", "deep-station-recovery-log");
@@ -24,7 +25,7 @@ function listJavaScriptFiles(dir) {
     });
 }
 
-function main() {
+async function main() {
   const errors = [];
 
   for (const file of requiredFiles) {
@@ -42,10 +43,13 @@ function main() {
   const css = read(path.join(flagshipRoot, "style.css"));
   const meta = JSON.parse(read(path.join(flagshipRoot, "meta.json")));
 
-  for (const field of ["title", "slug", "tagline", "genre", "controls", "sessionLength", "description"]) {
+  for (const field of ["title", "date", "slug", "tagline", "genre", "controls", "sessionLength", "description"]) {
     if (typeof meta[field] !== "string" || meta[field].trim() === "") {
       errors.push(`Flagship meta field must be a non-empty string: ${field}`);
     }
+  }
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(meta.date || "")) {
+    errors.push("Flagship meta date must use YYYY-MM-DD format");
   }
 
   if (!/<meta[^>]+name=["']viewport["']/i.test(html)) {
@@ -72,6 +76,23 @@ function main() {
     } catch (error) {
       errors.push(`JavaScript parse failed: ${path.relative(repoRoot, file)}\n${String(error.stderr || error.message)}`);
     }
+  }
+
+  try {
+    const stateModule = await import(pathToFileURL(path.join(flagshipRoot, "src", "state.js")).href);
+    const records = { bestSector: 1, muted: true, runs: 0, logs: [] };
+    const state = stateModule.createGameState(records);
+    stateModule.startRun(state);
+    if (state.phase !== "running" || state.sector.index !== 1) {
+      errors.push("Flagship state smoke test failed to start sector 1");
+    }
+    stateModule.step(state, 1, 0);
+    stateModule.scan(state);
+    if (!Number.isFinite(state.oxygen) || !Number.isFinite(state.battery) || !Number.isFinite(state.integrity)) {
+      errors.push("Flagship state smoke test produced invalid resource values");
+    }
+  } catch (error) {
+    errors.push(`Flagship module smoke test failed: ${error.message}`);
   }
 
   if (errors.length > 0) {

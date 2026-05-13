@@ -58,22 +58,22 @@ function syncUi() {
   ui.logLine.textContent = records.logs.length
     ? records.logs.slice(-4).join(" / ")
     : "아직 복구된 로그가 없습니다.";
-  ui.muteButton.textContent = records.muted ? "Sound Off" : "Sound On";
+  ui.muteButton.textContent = records.muted ? "소리 꺼짐" : "소리 켜짐";
 
   ui.powerTask.classList.toggle("done", state.powerOnline);
-  ui.powerTask.textContent = state.powerOnline ? "Power relay restored" : "Power relay offline";
+  ui.powerTask.textContent = state.powerOnline ? "전력 릴레이 복구됨" : "전력 릴레이 꺼짐";
   ui.oxygenTask.classList.toggle("done", state.oxygenOnline);
-  ui.oxygenTask.textContent = state.oxygenOnline ? "Oxygen valve stable" : "Oxygen valve offline";
+  ui.oxygenTask.textContent = state.oxygenOnline ? "산소 밸브 안정화됨" : "산소 밸브 불안정";
   const exitReady = state.powerOnline && state.oxygenOnline;
   ui.exitTask.classList.toggle("done", exitReady);
-  ui.exitTask.textContent = exitReady ? "Exit hatch ready" : "Exit hatch locked";
+  ui.exitTask.textContent = exitReady ? "출구 해치 준비됨" : "출구 해치 잠김";
 
   if (state.phase === "running") {
     ui.overlay.classList.add("hidden");
   } else {
     ui.overlay.classList.remove("hidden");
     if (state.phase === "failed") {
-      ui.overlayLabel.textContent = "Run Failed";
+      ui.overlayLabel.textContent = "런 실패";
       ui.overlayTitle.textContent = "섹터 1로 복귀";
       ui.overlayText.textContent = state.message;
     }

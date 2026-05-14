@@ -1,6 +1,7 @@
 "use strict";
 
 const fs = require("fs");
+const os = require("os");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const { pathToFileURL } = require("url");
@@ -72,14 +73,20 @@ async function main() {
 
   for (const file of listJavaScriptFiles(path.join(flagshipRoot, "src"))) {
     try {
-      execFileSync(process.execPath, ["--check", file], { stdio: "pipe" });
+      execFileSync(process.execPath, ["--input-type=module", "--check"], {
+        input: read(file),
+        stdio: ["pipe", "pipe", "pipe"],
+      });
     } catch (error) {
       errors.push(`JavaScript parse failed: ${path.relative(repoRoot, file)}\n${String(error.stderr || error.message)}`);
     }
   }
 
+  const smokeRoot = fs.mkdtempSync(path.join(os.tmpdir(), "flagship-module-"));
   try {
-    const stateModule = await import(pathToFileURL(path.join(flagshipRoot, "src", "state.js")).href);
+    fs.cpSync(path.join(flagshipRoot, "src"), path.join(smokeRoot, "src"), { recursive: true });
+    fs.writeFileSync(path.join(smokeRoot, "package.json"), JSON.stringify({ type: "module" }));
+    const stateModule = await import(pathToFileURL(path.join(smokeRoot, "src", "state.js")).href);
     const records = { bestSector: 1, muted: true, runs: 0, logs: [] };
     const state = stateModule.createGameState(records);
     stateModule.startRun(state);
@@ -93,6 +100,8 @@ async function main() {
     }
   } catch (error) {
     errors.push(`Flagship module smoke test failed: ${error.message}`);
+  } finally {
+    fs.rmSync(smokeRoot, { recursive: true, force: true });
   }
 
   if (errors.length > 0) {

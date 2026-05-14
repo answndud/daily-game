@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>누수 좌표</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">2026-05-14 일일 게임</p>
+        <h1>누수 좌표</h1>
+        <p class="summary">제한된 탐침으로 거리 단서를 모아 숨은 누수 칸을 정확히 봉인하세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="status-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>탐침</span>
+        <strong><span id="probeValue">0</span>/<span id="probeLimitValue">6</span></strong>
+      </article>
+      <article>
+        <span>격자</span>
+        <strong id="sizeValue">5x5</strong>
+      </article>
+      <article>
+        <span>모드</span>
+        <strong id="modeValue">탐침</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="누수 좌표 플레이 영역">
+      <section class="board-panel">
+        <div id="gridBoard" class="grid-board" role="grid" aria-label="누수 탐지 격자"></div>
+      </section>
+
+      <aside class="tool-panel">
+        <section>
+          <h2>규칙</h2>
+          <p>탐침 칸에는 숨은 누수까지의 맨해튼 거리가 표시됩니다.</p>
+          <p>거리 0은 누수 칸입니다. 확신이 들면 봉인 모드를 켜고 한 칸을 선택하세요.</p>
+        </section>
+        <section>
+          <h2>조작</h2>
+          <button id="sealButton" class="primary-button" type="button">봉인 모드 켜기</button>
+          <p class="hint">키보드: 1~9, QWER, ASDF, ZXCV로 가까운 칸을 선택합니다.</p>
+        </section>
+      </aside>
+
+      <div id="overlay" class="overlay">
+        <p id="overlayLabel" class="overlay-label">시작</p>
+        <h2 id="overlayTitle">거리 단서로 좌표를 좁히세요</h2>
+        <p id="overlayText">칸을 누르면 숨은 누수까지의 거리가 표시됩니다. 탐침을 모두 쓰기 전에 봉인할 칸을 찾아야 합니다.</p>
+        <button id="startButton" type="button">시작</button>
+      </div>
+    </section>
+
+    <p id="messageLine" class="message">서로 다른 위치의 거리 단서를 비교하면 누수 좌표가 하나로 좁혀집니다.</p>
+  </main>
+</body>
+</html>

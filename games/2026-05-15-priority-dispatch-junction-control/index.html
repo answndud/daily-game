@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>교차로 관제</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">2026-05-15 일일 게임</p>
+        <h1>교차로 관제</h1>
+        <p class="summary">다가오는 열차 중 가장 먼저 처리해야 할 카드를 골라 교차로를 안정화하세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="status-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>관제</span>
+        <strong><span id="scoreValue">0</span>/<span id="goalValue">8</span></strong>
+      </article>
+      <article>
+        <span>열차</span>
+        <strong id="trainCountValue">3대</strong>
+      </article>
+      <article>
+        <span>판정</span>
+        <strong id="ruleValue">마감 우선</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="교차로 관제 플레이 영역">
+      <section class="junction-panel">
+        <div class="junction-map" aria-hidden="true">
+          <span class="rail rail-a"></span>
+          <span class="rail rail-b"></span>
+          <span class="rail rail-c"></span>
+          <span class="signal-dot"></span>
+        </div>
+        <div id="trainList" class="train-list" role="list" aria-label="접근 중인 열차"></div>
+      </section>
+
+      <aside class="rule-panel">
+        <section>
+          <h2>선택 기준</h2>
+          <ol>
+            <li>마감 시간이 가장 적은 열차</li>
+            <li>마감이 같으면 위험도가 높은 열차</li>
+            <li>그래도 같으면 승객 수가 많은 열차</li>
+          </ol>
+        </section>
+        <section>
+          <h2>조작</h2>
+          <p>열차 카드를 탭해 통과시킵니다.</p>
+          <p class="hint">키보드: 1~5로 위에서부터 선택, Enter로 시작, Esc로 라운드 1.</p>
+        </section>
+      </aside>
+
+      <div id="overlay" class="overlay">
+        <p id="overlayLabel" class="overlay-label">시작</p>
+        <h2 id="overlayTitle">가장 급한 열차부터 보내세요</h2>
+        <p id="overlayText">카드의 마감, 위험도, 승객 수를 비교하세요. 한 번이라도 잘못 보내거나 마감이 끝나면 라운드 1로 돌아갑니다.</p>
+        <button id="startButton" type="button">시작</button>
+      </div>
+    </section>
+
+    <p id="messageLine" class="message">마감 시간이 같은 열차끼리는 위험도와 승객 수를 비교해야 합니다.</p>
+  </main>
+</body>
+</html>

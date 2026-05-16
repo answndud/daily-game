@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>중력 렌즈</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">2026-05-16 일일 게임</p>
+        <h1>중력 렌즈</h1>
+        <p class="summary">움직이는 렌즈로 광선을 휘어 별핵을 점화하세요. 노이즈를 피하면서 에너지를 관리해야 합니다.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="status-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>별핵</span>
+        <strong><span id="litValue">0</span>/<span id="targetValue">3</span></strong>
+      </article>
+      <article>
+        <span>에너지</span>
+        <strong><span id="energyValue">100</span>%</strong>
+      </article>
+      <article>
+        <span>노이즈</span>
+        <strong id="noiseValue">1개</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="중력 렌즈 플레이 영역">
+      <div class="canvas-wrap">
+        <canvas id="gameCanvas" width="960" height="640" aria-label="중력 렌즈 게임 캔버스"></canvas>
+        <div id="overlay" class="overlay">
+          <p id="overlayLabel" class="overlay-label">시작</p>
+          <h2 id="overlayTitle">광선을 별핵에 고정하세요</h2>
+          <p id="overlayText">렌즈를 드래그하면 광선이 휘어집니다. 목표 별핵에 광선을 유지하면 점화되고, 노이즈 근처를 지나면 에너지가 빠르게 줄어듭니다.</p>
+          <button id="startButton" type="button">시작</button>
+        </div>
+      </div>
+
+      <aside class="side-panel">
+        <section>
+          <h2>규칙</h2>
+          <p>흰 광선 끝과 선로가 별핵 중심을 지나가면 충전이 쌓입니다.</p>
+          <p>모든 별핵을 점화하면 더 어려운 다음 라운드로 자동 이동합니다.</p>
+        </section>
+        <section>
+          <h2>조작</h2>
+          <p>캔버스를 누르거나 드래그해 렌즈 위치를 조정합니다.</p>
+          <p class="hint">키보드: 방향키/WASD 이동, Enter 시작, Esc 라운드 1.</p>
+        </section>
+      </aside>
+    </section>
+
+    <p id="messageLine" class="message">렌즈는 광선에 가까울수록 강하게 휘게 만듭니다. 노이즈 구체는 피하세요.</p>
+  </main>
+</body>
+</html>

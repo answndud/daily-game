@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>계약 조립실</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">2026-05-17 일일 게임</p>
+        <h1>계약 조립실</h1>
+        <p class="summary">모듈을 최대 3개까지 골라 전력, 냉각, 신뢰 조건을 예산 안에서 동시에 만족시키세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="status-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>승인</span>
+        <strong><span id="scoreValue">0</span>/<span id="goalValue">4</span></strong>
+      </article>
+      <article>
+        <span>예산</span>
+        <strong><span id="costValue">0</span>/<span id="budgetValue">12</span></strong>
+      </article>
+      <article>
+        <span>선택</span>
+        <strong><span id="pickValue">0</span>/3</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="계약 조립실 플레이 영역">
+      <section class="contract-panel">
+        <h2>계약 조건</h2>
+        <div id="requirementList" class="requirement-list"></div>
+        <div class="result-panel">
+          <h2>조립 결과</h2>
+          <div id="resultList" class="result-list"></div>
+        </div>
+        <div class="action-row">
+          <button id="submitButton" class="primary-button" type="button">계약 제출</button>
+          <button id="clearButton" class="secondary-button" type="button">선택 해제</button>
+        </div>
+      </section>
+
+      <section class="module-panel">
+        <div class="panel-heading">
+          <h2>사용 가능한 모듈</h2>
+          <p>조합은 매 계약마다 바뀝니다.</p>
+        </div>
+        <div id="moduleGrid" class="module-grid" role="list" aria-label="모듈 카드"></div>
+      </section>
+
+      <div id="overlay" class="overlay">
+        <p id="overlayLabel" class="overlay-label">시작</p>
+        <h2 id="overlayTitle">조건 범위를 읽고 조립하세요</h2>
+        <p id="overlayText">각 모듈은 전력, 냉각, 신뢰, 비용을 바꿉니다. 최대 3개를 선택해 모든 조건 범위를 만족시키면 승인됩니다.</p>
+        <button id="startButton" type="button">시작</button>
+      </div>
+    </section>
+
+    <p id="messageLine" class="message">조건은 하나만 맞추는 게임이 아닙니다. 세 수치와 예산을 동시에 보세요.</p>
+  </main>
+</body>
+</html>

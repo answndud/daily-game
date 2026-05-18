@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>박자 조율사</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">2026-05-18 일일 게임</p>
+        <h1>박자 조율사</h1>
+        <p class="summary">흐르는 펄스가 박자선에 겹치는 순간 채널을 선택해 신호를 안정화하세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="status-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>조율</span>
+        <strong><span id="scoreValue">0</span>/<span id="goalValue">12</span></strong>
+      </article>
+      <article>
+        <span>오류</span>
+        <strong><span id="missValue">0</span>/3</strong>
+      </article>
+      <article>
+        <span>템포</span>
+        <strong id="tempoValue">느림</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="박자 조율사 플레이 영역">
+      <section class="track-panel">
+        <div class="beat-line" aria-hidden="true"></div>
+        <div id="trackList" class="track-list" aria-label="리듬 채널"></div>
+      </section>
+
+      <aside class="control-panel">
+        <section>
+          <h2>규칙</h2>
+          <p>펄스 중심이 박자선 안에 있을 때 같은 번호 채널을 누르면 성공입니다.</p>
+          <p>너무 빠르거나 늦거나, 다른 채널을 누르면 오류가 쌓입니다.</p>
+        </section>
+        <section>
+          <h2>조작</h2>
+          <div class="channel-buttons">
+            <button type="button" data-channel="0">1 채널</button>
+            <button type="button" data-channel="1">2 채널</button>
+            <button type="button" data-channel="2">3 채널</button>
+          </div>
+          <p class="hint">키보드: 1, 2, 3 또는 Q, W, E로 채널 선택. Enter 시작, Esc 라운드 1.</p>
+        </section>
+      </aside>
+
+      <div id="overlay" class="overlay">
+        <p id="overlayLabel" class="overlay-label">시작</p>
+        <h2 id="overlayTitle">박자선에 맞춰 채널을 누르세요</h2>
+        <p id="overlayText">중앙 박자선에 펄스가 닿는 순간 해당 채널을 선택하세요. 목표 조율 수를 채우면 다음 라운드로 넘어갑니다.</p>
+        <button id="startButton" type="button">시작</button>
+      </div>
+    </section>
+
+    <p id="messageLine" class="message">가장 가까운 펄스가 박자선 안에 들어오는 순간을 기다리세요.</p>
+  </main>
+</body>
+</html>

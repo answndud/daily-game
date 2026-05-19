@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>풍향 우편국</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">2026-05-19 일일 게임</p>
+        <h1>풍향 우편국</h1>
+        <p class="summary">바람 한 번에 모든 소포가 같은 방향으로 움직입니다. 순서를 계획해 목적지에 배달하세요.</p>
+      </div>
+      <button id="resetButton" class="secondary-button" type="button">라운드 1</button>
+    </header>
+
+    <section class="status-grid" aria-label="게임 상태">
+      <article>
+        <span>라운드</span>
+        <strong id="roundValue">1</strong>
+      </article>
+      <article>
+        <span>배달</span>
+        <strong><span id="deliveredValue">0</span>/<span id="parcelValue">2</span></strong>
+      </article>
+      <article>
+        <span>이동</span>
+        <strong><span id="moveValue">0</span>/<span id="limitValue">8</span></strong>
+      </article>
+      <article>
+        <span>격자</span>
+        <strong id="sizeValue">5x5</strong>
+      </article>
+    </section>
+
+    <section class="play-card" aria-label="풍향 우편국 플레이 영역">
+      <section class="board-panel">
+        <div id="board" class="board" role="grid" aria-label="소포 이동 격자"></div>
+        <div class="wind-pad" aria-label="방향 버튼">
+          <button type="button" data-dir="up">위</button>
+          <button type="button" data-dir="left">왼쪽</button>
+          <button type="button" data-dir="right">오른쪽</button>
+          <button type="button" data-dir="down">아래</button>
+        </div>
+      </section>
+
+      <aside class="rule-panel">
+        <section>
+          <h2>규칙</h2>
+          <p>바람을 보내면 모든 소포가 같은 방향으로 한 칸 움직입니다.</p>
+          <p>벽은 이동을 막고, 구덩이에 빠지면 즉시 실패합니다.</p>
+        </section>
+        <section>
+          <h2>조작</h2>
+          <p>격자에서 상하좌우로 스와이프하거나 방향 버튼을 누르세요.</p>
+          <p class="hint">키보드: 방향키/WASD 이동, Enter 시작, Esc 라운드 1.</p>
+        </section>
+      </aside>
+
+      <div id="overlay" class="overlay">
+        <p id="overlayLabel" class="overlay-label">시작</p>
+        <h2 id="overlayTitle">바람 순서를 계획하세요</h2>
+        <p id="overlayText">모든 소포가 동시에 움직입니다. 소포별 목적지를 확인하고 제한 이동 안에 배달하세요.</p>
+        <button id="startButton" type="button">시작</button>
+      </div>
+    </section>
+
+    <p id="messageLine" class="message">먼저 한 소포를 벽에 붙여 고정하면 다른 소포만 움직이는 상황을 만들 수 있습니다.</p>
+  </main>
+</body>
+</html>

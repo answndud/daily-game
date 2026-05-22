@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>교대 원장 - 2026-05-23</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <p class="eyebrow">2026-05-23 일일 게임</p>
+        <h1>교대 원장</h1>
+        <p class="lead">한정된 교대 카드를 배치해 네 작업대의 대기열과 피로도를 동시에 관리하세요.</p>
+      </header>
+
+      <section class="game-panel" aria-label="교대 원장 게임">
+        <div class="hud" aria-live="polite">
+          <article>
+            <span>라운드</span>
+            <strong id="roundValue">1</strong>
+          </article>
+          <article>
+            <span>처리</span>
+            <strong id="scoreValue">0/4</strong>
+          </article>
+          <article>
+            <span>턴</span>
+            <strong id="turnValue">0/20</strong>
+          </article>
+          <article>
+            <span>한계</span>
+            <strong id="limitValue">대기 19 · 피로 10</strong>
+          </article>
+        </div>
+
+        <section class="board-area">
+          <div>
+            <div class="section-title">
+              <h2>작업대</h2>
+              <p>작업대를 고른 뒤 교대 카드를 배치하세요.</p>
+            </div>
+            <div id="stationGrid" class="station-grid" role="list" aria-label="작업대 목록"></div>
+          </div>
+
+          <aside class="control-panel">
+            <div class="section-title">
+              <h2>교대 카드</h2>
+              <p>매 턴 세 장 중 하나만 사용할 수 있습니다.</p>
+            </div>
+            <div id="cardList" class="card-list" role="list" aria-label="교대 카드"></div>
+            <div class="actions">
+              <button id="applyButton" type="button">배치 실행</button>
+              <button id="resetButton" type="button">라운드 1</button>
+            </div>
+          </aside>
+        </section>
+
+        <p id="messageLine" class="message">시작을 누른 뒤 위험한 작업대부터 안정시키세요.</p>
+      </section>
+
+      <section id="overlay" class="overlay" aria-live="polite">
+        <div class="overlay-card">
+          <p class="eyebrow">자원 배치 전략</p>
+          <h2 id="overlayTitle">교대 원장 준비</h2>
+          <p id="overlayText">작업대는 매 턴 대기열이 쌓입니다. 카드를 배치해 대기열을 줄이되 피로도가 한계를 넘지 않게 관리하세요.</p>
+          <button id="startButton" type="button">라운드 1 시작</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

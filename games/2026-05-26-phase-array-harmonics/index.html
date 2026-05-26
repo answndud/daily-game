@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>위상 배열 - 2026-05-26</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <p class="kicker">2026-05-26 일일 게임</p>
+        <h1>위상 배열</h1>
+        <p class="summary">발진기의 위상을 돌려 현재 파형을 목표 파형과 겹치게 만드세요.</p>
+      </header>
+
+      <section class="panel" aria-label="위상 배열 게임">
+        <div class="hud" aria-live="polite">
+          <div>
+            <span>라운드</span>
+            <strong id="roundValue">1</strong>
+          </div>
+          <div>
+            <span>보정</span>
+            <strong id="scoreValue">0/3</strong>
+          </div>
+          <div>
+            <span>조정</span>
+            <strong id="moveValue">0/10</strong>
+          </div>
+          <div>
+            <span>오차</span>
+            <strong id="errorValue">0</strong>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="scope" aria-label="파형 비교">
+            <canvas id="scopeCanvas" width="720" height="360"></canvas>
+            <div class="scope-key" aria-hidden="true">
+              <span><i class="target-line"></i>목표</span>
+              <span><i class="current-line"></i>현재</span>
+            </div>
+          </div>
+
+          <aside class="controls">
+            <h2>발진기 위상</h2>
+            <p>각 버튼을 누르면 해당 발진기가 90도씩 회전합니다. 파형이 목표와 완전히 겹치면 보정 성공입니다.</p>
+            <div id="oscillatorList" class="oscillators" aria-label="발진기 목록"></div>
+            <div class="actions">
+              <button id="testButton" type="button">파형 검사</button>
+              <button id="resetButton" type="button">현재 보정 다시</button>
+            </div>
+          </aside>
+        </div>
+
+        <p id="messageLine" class="message">시작을 누르면 목표 파형이 표시됩니다.</p>
+      </section>
+
+      <section id="overlay" class="overlay" aria-live="polite">
+        <div class="overlay-card">
+          <p class="kicker">신호 보정실</p>
+          <h2 id="overlayTitle">위상 배열 준비</h2>
+          <p id="overlayText">발진기 위상을 바꿔 현재 파형을 목표 파형과 일치시키세요. 실패하면 라운드 1로 돌아갑니다.</p>
+          <button id="startButton" type="button">라운드 1 시작</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>격리 회로 - 2026-05-27</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <p class="kicker">2026-05-27 일일 게임</p>
+        <h1>격리 회로</h1>
+        <p class="summary">제한된 차단선으로 감염 회로를 끊어 연구소 노드를 보호하세요.</p>
+      </header>
+
+      <section class="panel" aria-label="격리 회로 게임">
+        <div class="hud" aria-live="polite">
+          <div>
+            <span>라운드</span>
+            <strong id="roundValue">1</strong>
+          </div>
+          <div>
+            <span>격리망</span>
+            <strong id="scoreValue">0/3</strong>
+          </div>
+          <div>
+            <span>차단선</span>
+            <strong id="blockValue">0/3</strong>
+          </div>
+          <div>
+            <span>위험 경로</span>
+            <strong id="riskValue">0</strong>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="map-card">
+            <svg id="circuitMap" viewBox="0 0 720 460" role="img" aria-label="감염 회로 지도"></svg>
+          </div>
+
+          <aside class="rules">
+            <h2>격리 절차</h2>
+            <p>연결선을 누르면 차단선이 놓입니다. 감염원에서 연구소까지 이어지는 모든 경로를 끊어야 합니다.</p>
+            <p>차단선 수는 제한되어 있습니다. 우회로가 늘어나기 전에 최소 절단 지점을 찾으세요.</p>
+            <div class="legend" aria-hidden="true">
+              <span><i class="source"></i>감염원</span>
+              <span><i class="lab"></i>연구소</span>
+              <span><i class="blocked"></i>차단</span>
+            </div>
+            <div class="actions">
+              <button id="testButton" type="button">확산 검사</button>
+              <button id="resetButton" type="button">현재 격리망 다시</button>
+            </div>
+          </aside>
+        </div>
+
+        <p id="messageLine" class="message">시작을 누른 뒤 감염 경로를 끊을 연결선을 선택하세요.</p>
+      </section>
+
+      <section id="overlay" class="overlay" aria-live="polite">
+        <div class="overlay-card">
+          <p class="kicker">긴급 격리반</p>
+          <h2 id="overlayTitle">격리 회로 준비</h2>
+          <p id="overlayText">감염원이 연구소까지 도달하지 못하도록 최소한의 연결선을 차단하세요. 실패하면 라운드 1부터 다시 시작합니다.</p>
+          <button id="startButton" type="button">라운드 1 시작</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

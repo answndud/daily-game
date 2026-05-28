@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>온도 증류 - 2026-05-28</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <p class="kicker">2026-05-28 일일 게임</p>
+        <h1>온도 증류</h1>
+        <p class="summary">공정 카드를 제한 횟수 안에 조합해 열량, 순도, 압력을 목표 범위에 맞추세요.</p>
+      </header>
+
+      <section class="panel" aria-label="온도 증류 게임">
+        <div class="hud" aria-live="polite">
+          <div>
+            <span>라운드</span>
+            <strong id="roundValue">1</strong>
+          </div>
+          <div>
+            <span>시료</span>
+            <strong id="scoreValue">0/3</strong>
+          </div>
+          <div>
+            <span>공정</span>
+            <strong id="moveValue">0/8</strong>
+          </div>
+          <div>
+            <span>안정도</span>
+            <strong id="stabilityValue">0</strong>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="meters" aria-label="증류 지표">
+            <div class="meter-card">
+              <div class="meter-head">
+                <strong>열량</strong>
+                <span id="heatText">0</span>
+              </div>
+              <div class="track"><i id="heatTarget"></i><b id="heatBar"></b></div>
+              <p id="heatRange">목표 0~0</p>
+            </div>
+            <div class="meter-card">
+              <div class="meter-head">
+                <strong>순도</strong>
+                <span id="purityText">0</span>
+              </div>
+              <div class="track"><i id="purityTarget"></i><b id="purityBar"></b></div>
+              <p id="purityRange">목표 0~0</p>
+            </div>
+            <div class="meter-card">
+              <div class="meter-head">
+                <strong>압력</strong>
+                <span id="pressureText">0</span>
+              </div>
+              <div class="track"><i id="pressureTarget"></i><b id="pressureBar"></b></div>
+              <p id="pressureRange">목표 0~0</p>
+            </div>
+          </div>
+
+          <aside class="lab">
+            <h2>공정 카드</h2>
+            <p>카드를 누르면 세 지표가 동시에 변합니다. 모든 지표가 목표 범위에 들어오면 자동으로 시료가 승인됩니다.</p>
+            <div id="cardList" class="cards" aria-label="공정 카드 목록"></div>
+            <div class="actions">
+              <button id="testButton" type="button">증류 검사</button>
+              <button id="resetButton" type="button">현재 시료 다시</button>
+            </div>
+          </aside>
+        </div>
+
+        <p id="messageLine" class="message">시작을 누른 뒤 공정 카드를 조합하세요.</p>
+      </section>
+
+      <section id="overlay" class="overlay" aria-live="polite">
+        <div class="overlay-card">
+          <p class="kicker">미세 증류실</p>
+          <h2 id="overlayTitle">온도 증류 준비</h2>
+          <p id="overlayText">열량, 순도, 압력을 목표 범위에 맞추세요. 제한 횟수 초과나 안전 범위 이탈은 라운드 1 복귀입니다.</p>
+          <button id="startButton" type="button">라운드 1 시작</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

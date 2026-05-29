@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>필터 경매 - 2026-05-29</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <p class="kicker">2026-05-29 일일 게임</p>
+        <h1>필터 경매</h1>
+        <p class="summary">제한 코인으로 필터를 입찰해 오염 샘플의 세 기준을 동시에 통과시키세요.</p>
+      </header>
+
+      <section class="panel" aria-label="필터 경매 게임">
+        <div class="hud" aria-live="polite">
+          <div>
+            <span>라운드</span>
+            <strong id="roundValue">1</strong>
+          </div>
+          <div>
+            <span>시료</span>
+            <strong id="scoreValue">0/3</strong>
+          </div>
+          <div>
+            <span>코인</span>
+            <strong id="coinValue">0/12</strong>
+          </div>
+          <div>
+            <span>부족 기준</span>
+            <strong id="riskValue">3</strong>
+          </div>
+        </div>
+
+        <div class="stage">
+          <section class="sample" aria-label="시료 상태">
+            <div class="metric">
+              <div class="metric-head">
+                <strong>탁도</strong>
+                <span id="mudText">0 / 기준 0</span>
+              </div>
+              <div class="bar"><b id="mudBar"></b><i id="mudLimit"></i></div>
+            </div>
+            <div class="metric">
+              <div class="metric-head">
+                <strong>독성</strong>
+                <span id="toxinText">0 / 기준 0</span>
+              </div>
+              <div class="bar"><b id="toxinBar"></b><i id="toxinLimit"></i></div>
+            </div>
+            <div class="metric">
+              <div class="metric-head">
+                <strong>압박</strong>
+                <span id="strainText">0 / 기준 0</span>
+              </div>
+              <div class="bar"><b id="strainBar"></b><i id="strainLimit"></i></div>
+            </div>
+            <div class="chosen">
+              <h2>선택한 필터</h2>
+              <p id="chosenLine">아직 선택한 필터가 없습니다.</p>
+            </div>
+          </section>
+
+          <aside class="auction">
+            <h2>입찰 카드</h2>
+            <p>필터를 고르면 코인을 쓰고 세 오염 지표가 내려갑니다. 모든 지표가 기준 이하가 되면 자동으로 정화됩니다.</p>
+            <div id="cardList" class="cards" aria-label="필터 카드 목록"></div>
+            <div class="actions">
+              <button id="testButton" type="button">정화 검사</button>
+              <button id="resetButton" type="button">현재 시료 다시</button>
+            </div>
+          </aside>
+        </div>
+
+        <p id="messageLine" class="message">시작을 누른 뒤 코인 예산 안에서 필터를 조합하세요.</p>
+      </section>
+
+      <section id="overlay" class="overlay" aria-live="polite">
+        <div class="overlay-card">
+          <p class="kicker">수질 입찰소</p>
+          <h2 id="overlayTitle">필터 경매 준비</h2>
+          <p id="overlayText">필터 카드로 탁도, 독성, 압박을 기준 이하로 낮추세요. 실패하면 라운드 1로 돌아갑니다.</p>
+          <button id="startButton" type="button">라운드 1 시작</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

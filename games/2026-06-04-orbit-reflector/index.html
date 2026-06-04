@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>궤도 반사실</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="brief" aria-labelledby="title">
+        <p class="eyebrow">2026-06-04 · 반사 물리 퍼즐</p>
+        <h1 id="title">궤도 반사실</h1>
+        <p class="lead">움직이는 펄스는 벽과 반사판에 튕깁니다. 반사판을 눌러 각도를 바꾸고 모든 목표 링을 통과시키세요.</p>
+        <div class="rules">
+          <span>클리어: 다음 라운드</span>
+          <span>실패: 라운드 1</span>
+          <span>조작: 반사판 터치</span>
+        </div>
+      </section>
+
+      <section class="game" aria-label="궤도 반사실 게임판">
+        <div class="hud">
+          <div><span>라운드</span><strong id="round">1</strong></div>
+          <div><span>실험</span><strong id="stage">1/2</strong></div>
+          <div><span>에너지</span><strong id="energy">100</strong></div>
+        </div>
+
+        <canvas id="arena" width="640" height="640" aria-label="반사실 캔버스"></canvas>
+
+        <div class="status">
+          <p id="status">반사판을 눌러 펄스 궤도를 바꾸세요.</p>
+          <button id="restart" type="button">라운드 1부터 다시</button>
+        </div>
+      </section>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>

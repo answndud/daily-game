@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>단서 금고</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="brief" aria-labelledby="title">
+        <p class="eyebrow">2026-06-05 · 숫자 단서 추론</p>
+        <h1 id="title">단서 금고</h1>
+        <p class="lead">금고 숫자는 숨겨져 있습니다. 합계, 홀짝, 인접 관계 단서를 읽고 각 자리 다이얼을 눌러 정답을 맞히세요.</p>
+        <div class="rules">
+          <span>클리어: 다음 라운드</span>
+          <span>실패: 라운드 1</span>
+          <span>조작: 숫자 다이얼</span>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="단서 금고 게임판">
+        <div class="hud">
+          <div><span>라운드</span><strong id="round">1</strong></div>
+          <div><span>금고</span><strong id="stage">1/2</strong></div>
+          <div><span>남은 시도</span><strong id="attempts">5</strong></div>
+        </div>
+
+        <div id="dials" class="dials" aria-label="숫자 다이얼"></div>
+
+        <article class="clue-card">
+          <p class="label">현재 단서</p>
+          <ul id="clues"></ul>
+        </article>
+
+        <div class="actions">
+          <button id="check" type="button">금고 확인</button>
+          <button id="restart" type="button">라운드 1부터 다시</button>
+        </div>
+
+        <p id="status" class="status">다이얼을 눌러 숫자를 바꾸고 단서를 모두 만족시키세요.</p>
+      </section>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>

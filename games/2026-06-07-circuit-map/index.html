@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회로 지도</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell" aria-labelledby="gameTitle">
+    <header class="header">
+      <p class="kicker">2026년 6월 7일 · 회로 경로 퍼즐</p>
+      <h1 id="gameTitle">회로 지도</h1>
+      <p class="summary">타일을 돌려 전류가 출발점에서 모든 단자를 지나가게 하세요. 길이 끊긴 타일은 옅게, 연결된 타일은 진하게 보입니다.</p>
+    </header>
+
+    <section class="hud" aria-label="진행 상태">
+      <div>
+        <span>라운드</span>
+        <strong id="roundText">1</strong>
+      </div>
+      <div>
+        <span>회전</span>
+        <strong id="turnText">0 / 8</strong>
+      </div>
+      <div>
+        <span>연결</span>
+        <strong id="goalText">0 / 2</strong>
+      </div>
+      <div>
+        <span>보드</span>
+        <strong id="boardText">3×2</strong>
+      </div>
+    </section>
+
+    <section class="board-card" aria-label="회로 보드">
+      <div class="board-head">
+        <span>회로도</span>
+        <strong id="boardCode">R01</strong>
+      </div>
+      <div id="board" class="board" aria-label="회로 타일 보드"></div>
+      <p id="statusText" class="status" aria-live="polite">타일을 눌러 회로를 복원하세요.</p>
+    </section>
+
+    <section class="legend">
+      <div class="legend-item">
+        <span class="legend-swatch source"></span>
+        <p>출발점</p>
+      </div>
+      <div class="legend-item">
+        <span class="legend-swatch goal"></span>
+        <p>단자</p>
+      </div>
+      <div class="legend-item">
+        <span class="legend-swatch live"></span>
+        <p>연결된 회로</p>
+      </div>
+    </section>
+
+    <section class="controls">
+      <button id="restartButton" type="button">라운드 1부터 재시작</button>
+      <p>키보드에서는 <kbd>1</kbd>부터 <kbd>9</kbd>까지로 보드 순서대로 타일을 회전할 수 있습니다.</p>
+    </section>
+
+    <section class="rules">
+      <h2>규칙</h2>
+      <p>모든 단자가 출발점과 연결되면 다음 라운드로 즉시 이동합니다. 회전 한도를 모두 쓰고도 실패하면 라운드 1로 돌아갑니다.</p>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

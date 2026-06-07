@@ -21,8 +21,8 @@
     {
       width: 3,
       height: 2,
-      source: { x: 0, y: 1 },
-      goals: [{ x: 2, y: 0 }, { x: 2, y: 1 }],
+      source: { x: 0, y: 1, port: "W" },
+      goals: [{ x: 2, y: 0, port: "E" }, { x: 2, y: 1, port: "E" }],
       edges: [
         [0, 1, 1, 1],
         [1, 1, 2, 1],
@@ -35,8 +35,8 @@
     {
       width: 4,
       height: 3,
-      source: { x: 0, y: 1 },
-      goals: [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }],
+      source: { x: 0, y: 1, port: "W" },
+      goals: [{ x: 3, y: 0, port: "E" }, { x: 3, y: 1, port: "E" }, { x: 3, y: 2, port: "E" }],
       edges: [
         [0, 1, 1, 1],
         [1, 1, 2, 1],
@@ -53,8 +53,8 @@
     {
       width: 4,
       height: 3,
-      source: { x: 0, y: 1 },
-      goals: [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }],
+      source: { x: 0, y: 1, port: "W" },
+      goals: [{ x: 3, y: 0, port: "E" }, { x: 3, y: 1, port: "E" }, { x: 3, y: 2, port: "E" }],
       edges: [
         [0, 1, 1, 1],
         [1, 1, 1, 2],
@@ -71,8 +71,8 @@
     {
       width: 5,
       height: 4,
-      source: { x: 0, y: 1 },
-      goals: [{ x: 4, y: 0 }, { x: 4, y: 1 }, { x: 4, y: 2 }, { x: 4, y: 3 }],
+      source: { x: 0, y: 1, port: "W" },
+      goals: [{ x: 4, y: 0, port: "E" }, { x: 4, y: 1, port: "E" }, { x: 4, y: 2, port: "E" }, { x: 4, y: 3, port: "E" }],
       edges: [
         [0, 1, 1, 1],
         [1, 1, 2, 1],
@@ -186,6 +186,16 @@
         bSet.add(ax < bx ? "W" : "E");
       }
     });
+    if (!map.has(toKey(level.source.x, level.source.y))) {
+      map.set(toKey(level.source.x, level.source.y), new Set());
+    }
+    map.get(toKey(level.source.x, level.source.y)).add(level.source.port);
+    level.goals.forEach((goal) => {
+      if (!map.has(toKey(goal.x, goal.y))) {
+        map.set(toKey(goal.x, goal.y), new Set());
+      }
+      map.get(toKey(goal.x, goal.y)).add(goal.port);
+    });
     return map;
   }
 
@@ -259,11 +269,11 @@
   }
 
   function getNodeAt(level, x, y, dir) {
-    if (dir === "W" && x === level.source.x && y === level.source.y) {
+    if (dir === level.source.port && x === level.source.x && y === level.source.y) {
       return nodeIdSource(level);
     }
     const goal = level.goals.find((candidate) => candidate.x === x && candidate.y === y);
-    if (goal && dir === "E") {
+    if (goal && dir === goal.port) {
       return nodeIdGoal(goal);
     }
     return null;

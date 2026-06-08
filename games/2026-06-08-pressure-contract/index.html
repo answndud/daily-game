@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>압력 계약실</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="brief" aria-labelledby="title">
+        <p class="eyebrow">2026-06-08 · 계약 자원 배분</p>
+        <h1 id="title">압력 계약실</h1>
+        <p class="lead">제한 토큰을 세 조항에 배치하면 안정, 속도, 감사 지표가 동시에 변합니다. 모든 지표를 목표 범위에 넣어 계약을 통과시키세요.</p>
+        <div class="rules">
+          <span>클리어: 다음 라운드</span>
+          <span>실패: 라운드 1</span>
+          <span>조작: 토큰 배치</span>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="압력 계약실 게임판">
+        <div class="hud">
+          <div><span>라운드</span><strong id="round">1</strong></div>
+          <div><span>계약</span><strong id="stage">1/2</strong></div>
+          <div><span>남은 토큰</span><strong id="tokens">7</strong></div>
+        </div>
+
+        <article class="target-card">
+          <p class="label">목표 범위</p>
+          <div id="targets" class="targets"></div>
+        </article>
+
+        <div id="meters" class="meters" aria-label="현재 지표"></div>
+        <div id="clauses" class="clauses" aria-label="계약 조항"></div>
+
+        <div class="actions">
+          <button id="check" type="button">계약 검사</button>
+          <button id="reset" type="button">현재 계약 초기화</button>
+        </div>
+
+        <p id="status" class="status">조항에 토큰을 배치해 목표 범위를 맞추세요.</p>
+        <button id="restart" class="restart" type="button">라운드 1부터 다시</button>
+      </section>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>

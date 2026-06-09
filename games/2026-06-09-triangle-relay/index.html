@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>삼각 송신소</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="brief" aria-labelledby="title">
+        <p class="eyebrow">2026-06-09 · 삼각 커버리지 퍼즐</p>
+        <h1 id="title">삼각 송신소</h1>
+        <p class="lead">격자 노드 세 곳을 송신기로 선택하세요. 세 점이 만드는 삼각 커버 안에 모든 목표 신호가 들어오면 배치가 승인됩니다.</p>
+        <div class="rules">
+          <span>클리어: 다음 라운드</span>
+          <span>실패: 라운드 1</span>
+          <span>조작: 노드 선택</span>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="삼각 송신소 게임판">
+        <div class="hud">
+          <div><span>라운드</span><strong id="round">1</strong></div>
+          <div><span>배치</span><strong id="stage">1/2</strong></div>
+          <div><span>검사 기회</span><strong id="checks">4</strong></div>
+        </div>
+
+        <div class="field-wrap">
+          <div id="overlay" class="triangle-overlay" aria-hidden="true"></div>
+          <div id="field" class="field" aria-label="송신기 배치 격자"></div>
+        </div>
+
+        <div class="actions">
+          <button id="check" type="button">커버 검사</button>
+          <button id="clear" type="button">선택 지우기</button>
+        </div>
+
+        <p id="status" class="status">노드 세 곳을 선택한 뒤 커버 검사를 누르세요.</p>
+        <button id="restart" class="restart" type="button">라운드 1부터 다시</button>
+      </section>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>

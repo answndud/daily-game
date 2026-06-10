@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>신호 등대</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell" aria-labelledby="game-title">
+    <section class="hero">
+      <p class="eyebrow">2026년 6월 10일 · 패턴 관찰 리듬</p>
+      <h1 id="game-title">신호 등대</h1>
+      <p class="lead">깜박이는 세 등대의 순서를 기억한 뒤 같은 순서로 신호를 되돌려 보내세요.</p>
+    </section>
+
+    <section class="panel" aria-label="진행 정보">
+      <div class="stat">
+        <span>라운드</span>
+        <strong id="roundText">1</strong>
+      </div>
+      <div class="stat">
+        <span>단계</span>
+        <strong id="stageText">1 / 3</strong>
+      </div>
+      <div class="stat">
+        <span>신호 길이</span>
+        <strong id="lengthText">3</strong>
+      </div>
+      <div class="stat">
+        <span>허용 실수</span>
+        <strong id="mistakeText">0 / 2</strong>
+      </div>
+    </section>
+
+    <section class="beacon-board" aria-label="등대 신호판">
+      <div id="beacon-left" class="beacon beacon-left" aria-label="왼쪽 등대">
+        <span class="beam"></span>
+        <strong>왼쪽</strong>
+      </div>
+      <div id="beacon-center" class="beacon beacon-center" aria-label="중앙 등대">
+        <span class="beam"></span>
+        <strong>중앙</strong>
+      </div>
+      <div id="beacon-right" class="beacon beacon-right" aria-label="오른쪽 등대">
+        <span class="beam"></span>
+        <strong>오른쪽</strong>
+      </div>
+    </section>
+
+    <section class="control-panel" aria-label="송신 조작">
+      <p id="statusText" class="status" aria-live="polite">패턴을 보여줍니다. 신호가 끝난 뒤 입력하세요.</p>
+      <div class="progress" aria-label="입력 진행도">
+        <span id="progressBar"></span>
+      </div>
+      <div class="buttons">
+        <button id="input-left" type="button" data-signal="0">왼쪽</button>
+        <button id="input-center" type="button" data-signal="1">중앙</button>
+        <button id="input-right" type="button" data-signal="2">오른쪽</button>
+      </div>
+      <button id="replayButton" class="secondary" type="button">패턴 다시 보기</button>
+      <button id="restartButton" class="secondary" type="button">라운드 1부터 재시작</button>
+    </section>
+
+    <section class="rules">
+      <h2>규칙</h2>
+      <p>라운드의 모든 단계를 통과하면 난이도가 오른 다음 라운드로 바로 이동합니다. 허용 실수를 넘기면 라운드 1로 돌아갑니다.</p>
+      <p>키보드에서는 <kbd>1</kbd>, <kbd>2</kbd>, <kbd>3</kbd> 또는 방향키로 입력할 수 있습니다.</p>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

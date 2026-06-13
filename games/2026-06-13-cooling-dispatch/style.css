@@ -1,0 +1,251 @@
+:root {
+  color-scheme: light;
+  --bg: #f4f2ed;
+  --surface: #fffefa;
+  --soft: #ebe7df;
+  --ink: #1d2428;
+  --muted: #667075;
+  --border: #d7d2ca;
+  --accent: #2f6570;
+  --warn: #9d5d35;
+  --danger: #a84235;
+  --radius: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  background:
+    linear-gradient(90deg, rgba(29, 36, 40, 0.035) 1px, transparent 1px) 0 0 / 30px 30px,
+    linear-gradient(180deg, var(--bg), #ebe5da);
+}
+
+button {
+  font: inherit;
+}
+
+.game-shell {
+  width: min(100%, 680px);
+  margin: 0 auto;
+  padding: 24px 16px 38px;
+}
+
+.header {
+  margin-bottom: 16px;
+}
+
+.kicker {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 10vw, 3.5rem);
+  letter-spacing: -0.06em;
+}
+
+.summary {
+  margin: 10px 0 0;
+  color: #424b50;
+  line-height: 1.55;
+}
+
+.hud,
+.dispatch-card,
+.forecast,
+.rules {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(255, 254, 250, 0.94);
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  overflow: hidden;
+}
+
+.hud div {
+  padding: 12px 14px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.hud div:nth-child(2n) {
+  border-right: 0;
+}
+
+.hud div:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.hud span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.hud strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 1.16rem;
+}
+
+.dispatch-card {
+  margin-top: 14px;
+  padding: 14px;
+}
+
+.dispatch-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--border);
+  color: var(--muted);
+}
+
+.dispatch-head strong {
+  color: var(--ink);
+  letter-spacing: 0.08em;
+}
+
+.message {
+  min-height: 2.8em;
+  margin: 12px 0;
+  color: #344047;
+  line-height: 1.45;
+}
+
+.reactor-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.reactor {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--ink);
+  background: var(--surface);
+  cursor: pointer;
+  text-align: left;
+}
+
+.reactor:focus-visible,
+.forecast button:focus-visible {
+  outline: 3px solid rgba(47, 101, 112, 0.28);
+  outline-offset: 2px;
+}
+
+.reactor:active {
+  transform: translateY(1px);
+}
+
+.reactor-name {
+  min-width: 3.1rem;
+  font-weight: 800;
+}
+
+.meter {
+  height: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--soft);
+}
+
+.meter-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: width 140ms ease, background 140ms ease;
+}
+
+.meter-fill.is-warm {
+  background: var(--warn);
+}
+
+.meter-fill.is-danger {
+  background: var(--danger);
+}
+
+.reactor-meta {
+  min-width: 4.8rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-align: right;
+}
+
+.forecast,
+.rules {
+  margin-top: 14px;
+  padding: 14px;
+}
+
+.forecast h2,
+.rules h2 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.forecast p,
+.rules p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.forecast button {
+  width: 100%;
+  min-height: 46px;
+  margin-top: 12px;
+  border: 1px solid #20282d;
+  border-radius: 14px;
+  color: #fffefa;
+  background: #20282d;
+  cursor: pointer;
+}
+
+kbd {
+  padding: 2px 6px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+@media (min-width: 720px) {
+  .game-shell {
+    padding-top: 36px;
+  }
+
+  .hud {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .hud div,
+  .hud div:nth-child(2n),
+  .hud div:nth-last-child(-n + 2) {
+    border-right: 1px solid var(--border);
+    border-bottom: 0;
+  }
+
+  .hud div:last-child {
+    border-right: 0;
+  }
+}

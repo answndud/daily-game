@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>의뢰 선택</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <div id="hud">
+    <div id="hud-round">라운드 <span id="round-num">1</span></div>
+    <div id="hud-score">완료 <span id="score-num">0</span>/<span id="target-num">3</span></div>
+    <button id="restart-btn" type="button">다시 시작</button>
+  </div>
+  <div id="board">
+    <div id="requests"></div>
+    <div id="tiles"></div>
+  </div>
+  <div id="feedback" class="hidden"></div>
+  <div id="overlay" class="hidden">
+    <div id="overlay-content">
+      <p id="overlay-msg"></p>
+      <button id="overlay-btn" type="button">계속</button>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
